@@ -13,13 +13,16 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './main-page/main-page.component';
+import { HeaderNavComponent } from './header-nav/header-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    MainPageComponent
+    MainPageComponent,
+    HeaderNavComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
