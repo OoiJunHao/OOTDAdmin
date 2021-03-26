@@ -14,13 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './main-page/main-page.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     MainPageComponent,
-    HeaderNavComponent
+    HeaderNavComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    LayoutModule
+    LayoutModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

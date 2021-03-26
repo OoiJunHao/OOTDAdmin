@@ -4,6 +4,7 @@
 
 .sidenav {
   width: 200px;
+  background-color: darkorange;
 }
 
 .sidenav .mat-toolbar {
