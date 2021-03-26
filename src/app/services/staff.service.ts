@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Staff } from "../models/staff";
@@ -18,10 +18,25 @@ export class StaffService {
   baseUrl = '/api/Subscriber';
 
   constructor(private httpClient: HttpClient, private sessionService: SessionService) { }
-}
 
-staffLogin(username: string, password: string): Observable < Staff > {
-  return this.httpClient.get<Staff>(this.baseUrl + "/staffLogin?username=" + username + "&password=" + password).pipe {
-  catchError(this.handleError);
-}
+  staffLogin(username: string, password: string): Observable<Staff> {
+    return this.httpClient.get<any>(this.baseUrl + "/staffLogin?username=" + username + "&password=" + password).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: string = "";
+
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = "An unknown error has occurred: " + error.error;
+    }
+    else {
+      errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error}`;
+    }
+
+    console.error(errorMessage);
+
+    return throwError(errorMessage);
+  }
 }
