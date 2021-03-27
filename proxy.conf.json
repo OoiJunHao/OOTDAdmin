@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 { 
     "/api": {
         "target": "http://localhost:8080/OTFood-Admin-war/Resources",
+=======
+{
+    "/api": {
+        "target": "http://localhost:8080/OTFoodRws/Resources",
+>>>>>>> df04c4e809036fdc47ac3135387caeb9a7e9e243
         "secure": false,
         "pathRewrite": {
             "^/api": ""

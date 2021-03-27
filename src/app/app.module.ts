@@ -7,28 +7,31 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-import { ToastrModule } from 'ngx-toastr';
 import { MenubarModule } from 'primeng/menubar';
 import {TableModule} from 'primeng/table';
+// import { ToastrModule } from 'ngx-toastr';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './main-page/main-page.component';
-import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ViewAllMealsComponent } from './view-all-meals/view-all-meals.component';
 // import { IndexComponent } from './index/index.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { IndexComponent } from './index/index.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     MainPageComponent,
-    HeaderNavComponent,
     ViewAllMealsComponent,
-    // IndexComponent,
+    IndexComponent,
     HeaderComponent,
     NavbarComponent
   ],
@@ -37,18 +40,14 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
     LayoutModule,
-    ToastrModule,
+    // ToastrModule,
     //PRIMENG MODULES
     MenubarModule,
     TableModule,
     HttpClientModule,
-    
+    CardModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
