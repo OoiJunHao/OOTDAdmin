@@ -1,19 +1,60 @@
-<section id="sect" style="height: 1000px;">
+<section id="sect">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <div class="login-card">
+            <p-card class="login-card-content" header="Staff Login">
+                <!-- <div class="header-img"> -->
+                <ng-template pTemplate="header">
+                    <img class="header-img" alt="Card" src="assets/images/login_background.jpg">
+                </ng-template>
+                <!-- </div> -->
 
+                <div class="p-grid p-jc-center">
+                    <div class="p-col-4">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                            <input type="username" pInputText name="username" #username="ngModel"
+                                [(ngModel)]="model.username" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="p-col-4">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"><i class="pi pi-shield"></i></span>
+                            <input type="password" pInputText name="password" #password="ngModel"
+                                [(ngModel)]="model.password" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <button pButton pRipple type="submit" label="Login" class="p-button-outlined p-button-success"
+                        icon="pi pi-sign-in"></button>
+
+                </div>
+            </p-card>
+
+
+
+        </div>
+    </form>
+</section>
+
+<app-footer></app-footer>
+
+<!-- 
     <div class="mx-auto" style="max-width: 800px;">
         <div class="card mb-3" style="max-width: 1000px; ">
             <div class="row no-gutters">
 
                 <div class="col-md-6">
                     <div class="card-body">
-                        <h5 class="card-title">User Login</h5>
+                        <h5 class="card-title">Staff Login</h5>
 
                         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
+                                <label for="inputEmail3" class="col-sm-4 col-form-label">Username</label>
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email"
-                                        name="email" #email="ngModel" [(ngModel)]="model.email">
+                                    <input type="username" class="form-control" id="inputEmail3" placeholder="Username"
+                                        name="username" #username="ngModel" [(ngModel)]="model.username">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -33,12 +74,12 @@
                             </div>
                         </form>
                     </div>
-                </div>
-                <!-- <div class="col-md-6">
+                </div> -->
+<!-- <div class="col-md-6">
                     <img src="../../../assets/images/icon.jpg" class="card-img" alt="...">
                 </div> -->
-            </div>
+<!-- </div>
         </div>
     </div>
 
-</section>
+</section> -->
