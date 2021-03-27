@@ -1,0 +1,29 @@
+#sect {
+    background-color: #191919;
+    font-family: Roboto;
+    text-align: center;
+}
+
+.login-card {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    width: fit-content;
+    /* align-self: center; */
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto;
+}
+
+.header-img {
+    height: 30vh;
+    width: 40vw;
+}
+
+.p-inputgroup {
+    margin-left: 30%;
+    margin-right: auto;
+    padding-bottom: 0.5rem;
+}
+
+
