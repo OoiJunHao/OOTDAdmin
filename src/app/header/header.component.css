@@ -1,0 +1,12 @@
+* {
+    color: #19a319;
+}
+.header {
+    height: 10vw;
+    background-color: #262626;
+}
+
+.header-content {
+    padding-left: 3rem;
+    padding-top: 0.5rem;
+}
