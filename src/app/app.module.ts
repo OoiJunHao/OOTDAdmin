@@ -14,13 +14,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './main-page/main-page.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { BentoManagementComponent } from './bento-management/bento-management.component';
+import { ViewAllMealsComponent } from './view-all-meals/view-all-meals.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     MainPageComponent,
-    HeaderNavComponent
+    HeaderNavComponent,
+    BentoManagementComponent,
+    ViewAllMealsComponent
   ],
   imports: [
     BrowserModule,
