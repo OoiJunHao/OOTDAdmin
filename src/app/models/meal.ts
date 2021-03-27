@@ -2,27 +2,27 @@ import { Category } from "./category.enum";
 import { Ingredient } from "./ingredient";
 
 export class Meal {
-    mealId: number;
-    price: number;
-    description: string;
-    calorie: number;
-    averageRating: number;
-    name: string;
-    image: string;
+    mealId: number | undefined;
+    price: number | undefined;
+    description: string | undefined;
+    calorie: number | undefined;
+    averageRating: number | undefined;
+    name: string | undefined;
+    image: string | undefined;
 
-    categories: Category[];
-    ingredients :Ingredient[];
+    categories: Category[] | undefined;
+    ingredients :Ingredient[] | undefined;
 
     constructor(
-        mealId: number,
-        price: number,
-        description: string,
-        calorie: number,
-        averageRating: number,
-        name: string,
-        image: string,
-        categories: Category[],
-        ingredients: Ingredient[]
+        mealId?: number,
+        price?: number,
+        description?: string,
+        calorie?: number,
+        averageRating?: number,
+        name?: string,
+        image?: string,
+        categories?: Category[],
+        ingredients?: Ingredient[]
     ) {
         this.mealId = mealId
         this.price = price

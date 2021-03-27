@@ -1,0 +1,22 @@
+.formbuttons {
+    text-align: center;
+    
+}
+
+.button {
+    border-radius: 15px;
+    margin: 5px;
+}
+
+.contentBoxes {
+    margin: 5px
+}
+
+.checkboxcontents {
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    margin: 5px
+}
