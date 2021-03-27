@@ -3,5 +3,5 @@ export enum IngredientType {
     VEGE,
     BASE,
     ADDON,
-    SAUCE;
+    SAUCE
 }

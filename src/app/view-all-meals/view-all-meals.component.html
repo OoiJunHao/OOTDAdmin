@@ -1,8 +1,29 @@
 <div class="container">
     <h3>All Meals</h3>
     <div class="mealsTable">
-        <p-table>
-            
+        <p-table [value]="allMeals">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>mealId</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>calorie</th>
+                    <th>average rating</th>
+                    <th>name</th>
+                    <th>image</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-meal>
+                <tr>
+                    <td>{{meal.mealId}}</td>
+                    <td>{{meal.price}}</td>
+                    <td>{{meal.description}}</td>
+                    <td>{{meal.calorie}}</td>
+                    <td>{{meal.averageRating}}</td>
+                    <td>{{meal.name}}</td>
+                    <td>{{meal.image}}</td>
+                </tr>
+            </ng-template>
         </p-table>
     </div>
 </div>

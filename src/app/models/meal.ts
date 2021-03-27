@@ -11,7 +11,7 @@ export class Meal {
     image: string;
 
     categories: Category[];
-    ingredients = Ingredient[];
+    ingredients :Ingredient[];
 
     constructor(
         mealId: number,
@@ -21,8 +21,8 @@ export class Meal {
         averageRating: number,
         name: string,
         image: string,
-        categories: Category[]
-        ingredient: Ingredient[];
+        categories: Category[],
+        ingredients: Ingredient[]
     ) {
         this.mealId = mealId
         this.price = price
@@ -32,7 +32,7 @@ export class Meal {
         this.name = name
         this.image = image
         this.categories = categories
-        this.ingredients = ingredient
+        this.ingredients = ingredients
     }
 
 

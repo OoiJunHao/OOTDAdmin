@@ -8,5 +8,5 @@ export enum Category {
     FISH,
     PORK,
     BEEF,
-    IMPOSSIBLE;
+    IMPOSSIBLE
 }
