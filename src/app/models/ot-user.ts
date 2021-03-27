@@ -1,7 +1,8 @@
 import { Address } from "./address";
 import { Meal } from "./meal";
 import { Review } from "./review";
-import { SaleTransaction } from "./sale-transaction";
+import { SaleTransaction } from "./sale-transaction"
+
 
 export class OTUser {
     userId: number;
