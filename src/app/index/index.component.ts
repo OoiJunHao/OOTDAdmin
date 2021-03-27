@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccessRightEnum } from '../models/access-right-enum.enum';
 import { Staff } from '../models/staff';
 import { SessionService } from '../services/session.service';
-// import { StaffService } from '../services/staff.service';
+import { StaffService } from '../services/staff.service';
 
 @Component({
     selector: 'app-index',
@@ -20,8 +21,7 @@ export class IndexComponent implements OnInit {
         username: '',
         password: ''
     }
-    //  private staffService: StaffService)
-    constructor(private router: Router, private activatedRouter: ActivatedRoute, public sessionService: SessionService) {
+    constructor(private router: Router, private activatedRouter: ActivatedRoute, public sessionService: SessionService, private staffService: StaffService) {
         this.loginError = false;
     }
 
@@ -35,30 +35,37 @@ export class IndexComponent implements OnInit {
 
 
     staffLogin(this: any) {
+        console.log(">>>>>> LOGIN <<<<<<<<");
         this.sessionService.setUsername(this.username);
         this.sessionService.setPassword(this.password);
 
-        //     this.staffService.staffLogin(this.model.username, this.model.password).subscribe(
-        //         response => {
-        //             let staff: Staff = response.subscriber;
-        //             if (staff != null) {
-        //                 this.sessionService.setIsLogin(true);
-        //                 this.sessionService.setCurrentStaff(staff);
-        //                 this.loginError = false;
-        //                 this.router.navidate(["/main-page"]);
-        //             } else {
-        //                 this.loginError = true;
-        //             }
-        //             console.log(JSON.parse(sessionStorage.currentStaff));
+        this.staffService.staffLogin(this.model.username, this.model.password).subscribe(
+            (response: Staff) => {
+                let staff: Staff = response;
 
-        //         },
-        //         error => {
-        //             this.loginError = true;
-        //             this.errorMessage = error;
+                if (response.accessRightEnum?.toString() == "ADMIN") {
+                    staff.accessRightEnum = AccessRightEnum.ADMIN;
+                } else if (response.accessRightEnum?.toString() == "EMPLOYEE") {
+                    staff.accessRightEnum = AccessRightEnum.EMPLOYEE;
+                }
+                if (staff != null) {
+                    this.sessionService.setIsLogin(true);
+                    this.sessionService.setCurrentStaff(staff);
+                    this.loginError = false;
+                    this.router.navigate(["/main-page"]);
+                } else {
+                    this.loginError = true;
+                }
+                console.log(JSON.parse(sessionStorage.currentStaff));
 
-        //         }
-        //     );
-        // }
+            },
+            (error: any) => {
+                this.loginError = true;
+                this.errorMessage = error;
+
+            }
+        );
     }
 }
+
 
