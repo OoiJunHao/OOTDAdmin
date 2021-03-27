@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-
+import { ToastrModule } from 'ngx-toastr';
+import { MenubarModule } from 'primeng/menubar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -14,17 +15,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './main-page/main-page.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { BentoManagementComponent } from './bento-management/bento-management.component';
 import { ViewAllMealsComponent } from './view-all-meals/view-all-meals.component';
-
+// import { IndexComponent } from './index/index.component';
+import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     MainPageComponent,
     HeaderNavComponent,
-    BentoManagementComponent,
-    ViewAllMealsComponent
+    ViewAllMealsComponent,
+    // IndexComponent,
+    HeaderComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,11 @@ import { ViewAllMealsComponent } from './view-all-meals/view-all-meals.component
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    LayoutModule
+    LayoutModule,
+    ToastrModule,
+    //PRIMENG MODULES
+    MenubarModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
