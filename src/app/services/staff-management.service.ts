@@ -41,6 +41,12 @@ export class StaffManagementService {
     );
   }
 
+  deleteStaff(staffId: number): Observable<any> {
+    return this.httpClient.delete<any>(this.baseUrl + "/" + staffId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
 

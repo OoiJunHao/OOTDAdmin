@@ -16,6 +16,7 @@ import { PanelModule } from 'primeng/panel';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component';
 import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component
     NavbarComponent,
     CreateNewMealComponent,
     ViewAllStaffComponent,
+    AccessRightErrorComponent,
 
   ],
   imports: [
@@ -65,7 +68,8 @@ import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component
     SplitButtonModule,
     MessageModule,
     MessagesModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

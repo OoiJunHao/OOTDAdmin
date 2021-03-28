@@ -6,10 +6,12 @@ import { ViewAllMealsComponent } from './view-all-meals/view-all-meals.component
 import { IndexComponent } from "./index/index.component";
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component'
 import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
+  { path: 'accessRightError', component: AccessRightErrorComponent },
   { path: 'index', component: IndexComponent },
   { path: 'main-page', component: MainPageComponent },
   { path: 'bentoManagement', component: ViewAllMealsComponent },

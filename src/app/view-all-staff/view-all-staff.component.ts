@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Staff } from '../models/staff';
 import { SessionService } from '../services/session.service';
 import { StaffManagementService } from '../services/staff-management.service';
-import { StaffService } from '../services/staff.service';
 
 @Component({
   selector: 'app-view-all-staff',
   templateUrl: './view-all-staff.component.html',
   styleUrls: ['./view-all-staff.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService],
 })
 export class ViewAllStaffComponent implements OnInit {
 
   staffs: Staff[];
   staffToView: Staff;
-  staffToUpdate: Staff;
 
   items!: MenuItem[];
 
@@ -26,10 +24,10 @@ export class ViewAllStaffComponent implements OnInit {
 
   submitted: boolean = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public sessionService: SessionService, private staffManagementService: StaffManagementService, private messageService: MessageService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, public sessionService: SessionService, private staffManagementService: StaffManagementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.staffs = new Array();
-    this.staffToView = new Staff();
-    this.staffToUpdate = new Staff();
+    this.staffToView = sessionService.getCurrentStaff();
+    // this.staffId = null;
 
 
     this.items = [
@@ -74,6 +72,30 @@ export class ViewAllStaffComponent implements OnInit {
 
   showDeleteDialog(): void {
     this.showDelete = true;
+
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + this.staffToView.username + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        if (this.staffToView != null) {
+          this.staffManagementService.deleteStaff(this.staffToView.staffId).subscribe(
+            response => {
+              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Staff Deleted', life: 3000 });
+              this.staffs = this.staffs.filter(val => val.staffId !== this.staffToView.staffId);
+              this.ngOnInit();
+              // this.router.navigate(["/staffManagement"]);
+            },
+            error => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Staff Deletion Fail', life: 3000 });
+              console.log('********** DeleteStaff: ' + error);
+
+            }
+          )
+        }
+
+      }
+    });
   }
 
   hideUpdateDialog(): void {
