@@ -25,7 +25,7 @@ export class SessionService {
     return JSON.parse(sessionStorage.currentStaff);
   }
 
-  setCurrentStaff(currentStaff: Staff): void {
+  setCurrentStaff(currentStaff: Staff | null): void {
     sessionStorage.currentStaff = JSON.stringify(currentStaff);
   }
 

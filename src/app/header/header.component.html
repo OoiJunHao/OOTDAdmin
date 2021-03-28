@@ -3,20 +3,25 @@
         <!-- <div class="company-logo">
 
         </div> -->
+        <div class="header-left">
+            <div class="company-name">
+                <h3>OOTDAdmin</h3>
+            </div>
 
-        <div class="company-name">
-            <h3>OOTDAdmin</h3>
+            <div class="quote">
+                <span style="font-size:12px;">Eat Fresh Work Healthy</span>
+            </div>
         </div>
 
-        <div class="quote">
-            <span style="font-size:12px;">Eat Fresh Work Healthy</span>
-        </div>
+        <!-- <div class="header-right">
+            <div *ngIf="sessionService.getIsLogin() == true" class=header-action>
+                <button pButton pRipple type="button" label="Logout" (click)="logout()"
+                    class=" p-button-infop-button-text"></button>
+
+            </div>
+        </div> -->
     </div>
 
-    <div *ngIf="sessionService.getIsLogin() == true" class=header-action>
-        <button pButton pRipple type="button" label="Logout" (click)="logout()"
-            class=" p-button-infop-button-text"></button>
 
-    </div>
 
 </header>
