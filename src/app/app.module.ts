@@ -27,6 +27,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component';
+import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CreateNewMealComponent } from './create-new-meal/create-new-meal.compon
     IndexComponent,
     HeaderComponent,
     NavbarComponent,
-    CreateNewMealComponent
+    CreateNewMealComponent,
+    ViewAllStaffComponent
   ],
   imports: [
     BrowserModule,
