@@ -81,7 +81,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.sessionService.setIsLogin(false);
-    // this.sessionService.setCurrentStaff(null);
+    this.sessionService.setCurrentStaff(null);
 
     this.router.navigate(["/index"])
   }
