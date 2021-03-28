@@ -9,6 +9,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
+
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -18,6 +19,7 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
+import { DividerModule } from 'primeng/divider';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +49,6 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
     CreateNewMealComponent,
     ViewAllStaffComponent,
     AccessRightErrorComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -72,6 +73,8 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
     ToastModule,
     ConfirmDialogModule,
     ToolbarModule
+    DividerModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccessRightEnum } from '../models/access-right-enum.enum';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-main-page',
@@ -8,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class MainPageComponent implements OnInit {
   val1: number | undefined;
 
-  constructor() { }
+  constructor(public sessionService: SessionService) {
+
+  }
 
   ngOnInit(): void {
   }
+
 
 }
