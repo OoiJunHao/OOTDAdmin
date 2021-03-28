@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CreateStaffReq } from '../models/create-staff-req';
 import { Staff } from '../models/staff';
 import { UpdateStaffReq } from '../models/update-staff-req';
 import { SessionService } from './session.service';
@@ -19,6 +20,13 @@ export class StaffManagementService {
 
   constructor(private httpClient: HttpClient, private sessionService: SessionService) { }
 
+  createNewStaff(newStaff: Staff): Observable<number> {
+    let createStaff: CreateStaffReq = new CreateStaffReq(this.sessionService.getUsername(), this.sessionService.getPassword(), newStaff);
+    return this.httpClient.put<number>(this.baseUrl, createStaff, httpOptions).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
 
   getStaffs(): Observable<Staff[]> {
     return this.httpClient.get<Staff[]>(this.baseUrl + "/retrieveAllStaffs?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(

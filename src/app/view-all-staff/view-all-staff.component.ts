@@ -1,6 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { AccessRightEnum } from '../models/access-right-enum.enum';
 import { Staff } from '../models/staff';
 import { SessionService } from '../services/session.service';
 import { StaffManagementService } from '../services/staff-management.service';
@@ -15,6 +17,8 @@ export class ViewAllStaffComponent implements OnInit {
 
   staffs: Staff[];
   staffToView: Staff;
+  staff: Staff;
+  createStaffEnum: string = "";
 
   items!: MenuItem[];
 
@@ -27,6 +31,7 @@ export class ViewAllStaffComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public sessionService: SessionService, private staffManagementService: StaffManagementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.staffs = new Array();
     this.staffToView = sessionService.getCurrentStaff();
+    this.staff = sessionService.getCurrentStaff();
     // this.staffId = null;
 
 
@@ -40,7 +45,7 @@ export class ViewAllStaffComponent implements OnInit {
       {
         label: "Delete",
         icon: "pi pi-trash",
-        command: () => { this.showDeleteDialog(); },
+        command: () => { this.deleteStaff(); },
       }
 
     ];
@@ -70,7 +75,43 @@ export class ViewAllStaffComponent implements OnInit {
     // this.messageService.add({ severity: 'success', summary: 'Update Staff', detail: "Staff updated successfully" });
   }
 
-  showDeleteDialog(): void {
+  showCreateDialog(): void {
+    this.showCreate = true;
+  }
+
+  createNewStaff(): void {
+    if (this.createStaffEnum == "Admin") {
+      this.staff.accessRightEnum = AccessRightEnum.ADMIN;
+    } else if (this.createStaffEnum == "Employee") {
+      this.staff.accessRightEnum = AccessRightEnum.EMPLOYEE;
+    }
+
+    if (this.staff != null) {
+      this.staffManagementService.createNewStaff(this.staff).subscribe(
+        res => {
+          let newStaffId: number = res;
+          this.staffManagementService.getStaffByStaffId(newStaffId).subscribe(
+            res => {
+              this.staff = res;
+            },
+            error => {
+              console.log('********** retrieve by id: ' + error);
+            }
+          );
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Staff Created', life: 3000 });
+          this.staffs.push(this.staff);
+          this.ngOnInit();
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Staff Creation Failed', life: 3000 });
+          console.log('********** create staff: ' + error);
+        }
+      );
+    }
+
+  }
+
+  deleteStaff(): void {
     this.showDelete = true;
 
     this.confirmationService.confirm({
@@ -98,8 +139,9 @@ export class ViewAllStaffComponent implements OnInit {
     });
   }
 
-  hideUpdateDialog(): void {
+  hideDialog(): void {
     this.showUpdate = false;
+    this.showCreate = false;
   }
 
   updateStaff() {

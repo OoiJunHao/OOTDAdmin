@@ -17,6 +17,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToolbarModule } from 'primeng/toolbar';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -69,7 +70,8 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
     MessageModule,
     MessagesModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
