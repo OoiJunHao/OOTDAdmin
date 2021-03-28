@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+<section class="content">
+    <p-toast position="top-right"></p-toast>
+    <p-panel header="All Staffs">
+        <p-table [value]="staffs">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Staff ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Access Right</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-staff>
+                <tr>
+                    <td>{{staff.staffId}}</td>
+                    <td>{{staff.firstname}}</td>
+                    <td>{{staff.lastName}}</td>
+                    <td>{{staff.username}}</td>
+                    <td>{{staff.accessRightEnum}}</td>
+                    <td>
+                        <p-splitButton label="Edit" icon="pi pi-plus" styleClass=" p-button-warning" [model]="items">
+                        </p-splitButton>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+</section>

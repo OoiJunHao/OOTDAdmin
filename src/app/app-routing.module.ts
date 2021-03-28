@@ -5,6 +5,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ViewAllMealsComponent } from './view-all-meals/view-all-meals.component'
 import { IndexComponent } from "./index/index.component";
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component'
+import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 
 
 const routes: Routes = [
@@ -12,8 +13,10 @@ const routes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: 'main-page', component: MainPageComponent },
   { path: 'bentoManagement', component: ViewAllMealsComponent },
-  { path: 'createNewMeal', component: CreateNewMealComponent}
-  
+  { path: 'createNewMeal', component: CreateNewMealComponent },
+  { path: 'staffManagement', component: ViewAllStaffComponent },
+
+
 
 
 ];
