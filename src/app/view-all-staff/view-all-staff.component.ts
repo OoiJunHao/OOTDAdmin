@@ -16,6 +16,7 @@ export class ViewAllStaffComponent implements OnInit {
 
   staffs: Staff[];
   staffToView: Staff;
+  staffToUpdate: Staff;
 
   items!: MenuItem[];
 
@@ -23,9 +24,13 @@ export class ViewAllStaffComponent implements OnInit {
   showDelete: boolean = false;
   showCreate: boolean = false;
 
+  submitted: boolean = false;
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public sessionService: SessionService, private staffManagementService: StaffManagementService, private messageService: MessageService) {
     this.staffs = new Array();
     this.staffToView = new Staff();
+    this.staffToUpdate = new Staff();
+
 
     this.items = [
       {
@@ -56,19 +61,49 @@ export class ViewAllStaffComponent implements OnInit {
     );
   }
 
+  passStaff(staff: Staff) {
+    console.log("Staff clicked: " + staff.username);
+    this.staffToView = staff;
+    console.log(this.staffToView);
+  }
+
   showUpdateDialog(): void {
-    this.showCreate = true;
-    this.messageService.add({ severity: 'success', summary: 'Update Staff', detail: "Staff updated successfully" });
+    this.showUpdate = true;
+    // this.messageService.add({ severity: 'success', summary: 'Update Staff', detail: "Staff updated successfully" });
   }
 
   showDeleteDialog(): void {
     this.showDelete = true;
   }
 
+  hideUpdateDialog(): void {
+    this.showUpdate = false;
+  }
+
+  updateStaff() {
+
+    this.submitted = true;
+    if (this.staffToView.staffId != null) {
+      this.staffManagementService.updateStaff(this.staffToView).subscribe(
+        response => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Staff Updated', life: 3000 });
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Staff Update Fail', life: 3000 });
+          console.log('********** UpdateProductComponent.ts: ' + error);
+        }
+
+      );
+
+      this.ngOnInit();
+      this.showUpdate = false;
+    }
+  }
+
 
   checkAccessRight() {
     if (!this.sessionService.checkAccessRight(this.router.url)) {
-      this.router.navigate(["/accessRightError"]);
+      // this.router.navigate(["/accessRightError"]);
     }
   }
 

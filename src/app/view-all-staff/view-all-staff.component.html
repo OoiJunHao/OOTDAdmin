@@ -23,11 +23,39 @@
                     <td>{{staff.username}}</td>
                     <td>{{staff.accessRightEnum}}</td>
                     <td>
-                        <p-splitButton label="Edit" icon="pi pi-plus" styleClass=" p-button-warning" [model]="items">
+                        <p-splitButton label="Edit" icon="pi pi-plus" styleClass=" p-button-warning" [model]="items"
+                            (click)="passStaff(staff)">
                         </p-splitButton>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </p-panel>
+
+    <p-dialog class="dialogs" *ngIf="showUpdate" header="Update Staff Details" [(visible)]="showUpdate">
+        <ng-template pTemplate="content">
+            <div class="p-field">
+                <label for="firstname">First Name</label>
+                <input class="input" type="text" pInputText name="firstname" id="firstname"
+                    [(ngModel)]="staffToView.firstname" required autofocus />
+                <small class="p-error" *ngIf="submitted && !staffToView.firstname">First Name is required</small>
+            </div>
+            <div class="p-field">
+                <label for="lastName">Last Name</label>
+                <input class="input" type="text" pInputText name="lastName" id="lastName"
+                    [(ngModel)]="staffToView.lastName" required autofocus />
+                <small class="p-error" *ngIf="submitted && !staffToView.lastName">Last Name is required</small>
+            </div>
+
+
+        </ng-template>
+
+        <ng-template class="footer" pTemplate="footer">
+            <button class="cancel" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideUpdateDialog()"></button>
+            <button pButton pRipple label="Update" icon="pi pi-check" class="p-button-text"
+                (click)="updateStaff()"></button>
+        </ng-template>
+
+    </p-dialog>
 </section>

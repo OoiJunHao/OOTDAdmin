@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Staff } from '../models/staff';
+import { UpdateStaffReq } from '../models/update-staff-req';
 import { SessionService } from './session.service';
 
 const httpOptions = {
@@ -21,6 +22,21 @@ export class StaffManagementService {
 
   getStaffs(): Observable<Staff[]> {
     return this.httpClient.get<Staff[]>(this.baseUrl + "/retrieveAllStaffs?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getStaffByStaffId(staffId: number): Observable<Staff> {
+    return this.httpClient.get<Staff>(this.baseUrl + "/retrieveStaff/" + staffId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateStaff(staff: Staff): Observable<any> {
+    console.log(staff);
+    let updateStaffReq: UpdateStaffReq = new UpdateStaffReq(this.sessionService.getUsername(), this.sessionService.getPassword(), staff);
+    console.log(updateStaffReq);
+    return this.httpClient.post<any>(this.baseUrl, updateStaffReq, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
