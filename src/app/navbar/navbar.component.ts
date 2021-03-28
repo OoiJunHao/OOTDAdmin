@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from "primeng/api";
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
   items!: MenuItem[];
 
-  constructor() { }
+  constructor(public sessionService: SessionService, private router: Router) { }
 
   ngOnInit(): void {
     this.items = [
@@ -39,7 +40,7 @@ export class NavbarComponent implements OnInit {
         items: [
           {
             label: 'Bento Management',
-            routerLink: '/bento-management'
+            routerLink: ['/bentoManagement']
           },
           {
             label: 'Ingredient Management',
@@ -71,6 +72,13 @@ export class NavbarComponent implements OnInit {
       }
     ];
 
+  }
+
+  logout() {
+    this.sessionService.setIsLogin(false);
+    // this.sessionService.setCurrentStaff(null);
+
+    this.router.navigate(["/index"])
   }
 
 }

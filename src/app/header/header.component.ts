@@ -15,12 +15,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout() {
-    this.sessionService.setIsLogin(false);
-    // this.sessionService.setCurrentStaff(null);
+  // logout() {
+  //   this.sessionService.setIsLogin(false);
+  //   // this.sessionService.setCurrentStaff(null);
 
-    this.router.navigate(["/index"])
-  }
+  //   this.router.navigate(["/index"])
+  // }
 
 
 }
