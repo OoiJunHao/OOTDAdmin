@@ -1,0 +1,61 @@
+<div class="createButton">
+    <p-button type="button" icon="pi-plus-circle" label="add Meal" (click)="showDialog()"></p-button>
+</div>
+
+<p-dialog header="Create new Bento" [(visible)] = "display">
+    <form class="createMealForm">
+        <div class="p-field p-grid contentBoxes">
+            <label for="name" class="p-col-fixed" style = "width: 100px;">Name: </label>
+            <div class="p-col">
+                <input id="name" type="text" pInputText name="name" [(ngModel)]="mealToCreate.name" style="width: 450px">
+            </div>
+        </div>
+        <div class="p-field p-grid contentBoxes">
+            <label for="description" class="p-col-fixed" style = "width: 100px;">Description: </label>
+            <div class="p-col">
+                <input id="description" type="text" name="description" pInputText [(ngModel)]="mealToCreate.description" style="width: 450px">
+            </div>
+        </div>
+        <div class="p-field p-grid contentBoxes">
+            <label for="price" class="p-col-fixed" style = "width: 100px;">Price: </label>
+            <div class="p-col">
+                <input id="price" type="text" name="price" pInputText [(ngModel)]="mealToCreate.price" style="width: 450px">
+            </div>
+        </div>
+        <div class="p-field p-grid contentBoxes">
+            <label for="calorie" class="p-col-fixed" style = "width: 100px;">Calorie: </label>
+            <div class="p-col">
+                <input id="calorie" type="text" name="calorie" [(ngModel)]="mealToCreate.calorie" pInputText style="width: 450px">
+            </div>
+        </div>
+        <div class="p-field p-grid contentBoxes">
+            <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
+            <div class="p-col">
+                <input id="" type="text" name="image" [(ngModel)]="mealToCreate.image" pInputText style="width: 450px">
+            </div>
+        </div>
+        
+        <div class="checkboxcontents">
+            <div class="content">
+                <label for="allcategories">Categories (Choose 1 or more):</label>
+                <div class="allcategories"*ngFor="let category of listOfCategories" class="p-field-checkbox">
+                    <p-checkbox name="categories" value="category" [value]="category" [(ngModel)]="selectedCategories"></p-checkbox>
+                    <label [for]="category">{{category}}</label>
+                </div>
+            </div>
+            <div class="content">
+                <label for="allingredients">Ingredients (Choose 1 or more):</label>
+                <div class="allingredients"*ngFor="let ingredient of listOfIngredients" class="p-field-checkbox">
+                    <p-checkbox name="ingredients" value="ingredient" [value]="ingredient" [(ngModel)]="selectedIngredients"></p-checkbox>
+                    <label [for]="ingredient">{{ingredient.name}}</label>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <div class="formbuttons">
+            <button class="button"> Clear </button>
+            <button class="button" (click)="create()"> Submit </button>
+        </div>  
+    </form>
+</p-dialog>

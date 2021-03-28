@@ -5,6 +5,9 @@ import { catchError } from 'rxjs/operators'
 
 import { SessionService } from './session.service'
 import { Meal } from '../models/meal'
+import { NgForm } from '@angular/forms';
+import { Category } from '../models/category.enum';
+import { Ingredient } from '../models/ingredient';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,6 +26,24 @@ export class BentoManagementService {
   getProducts() : Observable<Meal[]> {
     return this.httpClient.get<Meal[]>(this.baseUrl + "/retrieveAllMeals").pipe
     (
+      catchError(this.handleError)
+    )
+  }
+
+  createMeal(newMeal: Meal) {
+    return this.httpClient.put<number>(this.baseUrl, newMeal, httpOptions).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  retrieveCategories() : Observable<Category[]> {
+    return this.httpClient.get<Category[]>(this.baseUrl + "/retrieveAllMealCategories").pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  retrieveIngredients(): Observable<Ingredient[]> {
+    return this.httpClient.get<Ingredient[]>(this.baseUrl + "/retrieveAllIngredients").pipe(
       catchError(this.handleError)
     )
   }
