@@ -36,9 +36,8 @@ export class IndexComponent implements OnInit {
 
     staffLogin(this: any) {
         console.log(">>>>>> LOGIN <<<<<<<<");
-        this.sessionService.setUsername(this.username);
-        this.sessionService.setPassword(this.password);
-
+        this.sessionService.setUsername(this.model.username);
+        this.sessionService.setPassword(this.model.password);
         this.staffService.staffLogin(this.model.username, this.model.password).subscribe(
             (response: Staff) => {
                 let staff: Staff = response;
