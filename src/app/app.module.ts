@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 
 // PrimeNg Modules
 import { MenubarModule } from 'primeng/menubar';
-import {TableModule} from 'primeng/table';
-import {DialogModule} from 'primeng/dialog';
-import {DropdownModule} from 'primeng/dropdown';
-import {CheckboxModule} from 'primeng/checkbox';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { CheckboxModule } from 'primeng/checkbox';
 // import { ToastrModule } from 'ngx-toastr';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { PanelModule } from 'primeng/panel';
+import { DividerModule } from 'primeng/divider';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +27,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component';
+import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import { CreateNewMealComponent } from './create-new-meal/create-new-meal.compon
     IndexComponent,
     HeaderComponent,
     NavbarComponent,
-    CreateNewMealComponent
+    CreateNewMealComponent,
+    ViewAllStaffComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { CreateNewMealComponent } from './create-new-meal/create-new-meal.compon
     ButtonModule,
     DialogModule,
     DropdownModule,
-    CheckboxModule
+    CheckboxModule,
+    PanelModule,
+    DividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
