@@ -81,9 +81,9 @@ export class ViewAllStaffComponent implements OnInit {
 
   createNewStaff(): void {
     if (this.createStaffEnum == "Admin") {
-      this.staff.accessRightEnum = AccessRightEnum.ADMIN;
+      this.staff.type = AccessRightEnum.ADMIN;
     } else if (this.createStaffEnum == "Employee") {
-      this.staff.accessRightEnum = AccessRightEnum.EMPLOYEE;
+      this.staff.type = AccessRightEnum.EMPLOYEE;
     }
 
     if (this.staff != null) {

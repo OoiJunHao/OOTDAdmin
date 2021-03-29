@@ -72,7 +72,7 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
     MessagesModule,
     ToastModule,
     ConfirmDialogModule,
-    ToolbarModule
+    ToolbarModule,
     DividerModule
 
   ],

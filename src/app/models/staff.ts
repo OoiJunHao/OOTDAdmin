@@ -14,19 +14,19 @@ export class Staff {
     lastName: string;
     username: string;
     password: string;
-    // salt: string;
-    accessRightEnum: AccessRightEnum;
+    //salt: string;
+    type: AccessRightEnum;
 
 
 
     constructor(staffId: number, firstname: string, lastName: string, username: string, password: string, accessRightEnum: AccessRightEnum) {
-        this.accessRightEnum = accessRightEnum;
+        this.type = accessRightEnum;
         this.staffId = staffId;
         this.firstname = firstname;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        // this.salt = salt;
+        //this.salt = "";
     }
 
     // constructor(staffId?: number, firstname?: string, lastName?: string, username?: string, password?: string, salt?: string, accessRightEnum?: AccessRightEnum) {

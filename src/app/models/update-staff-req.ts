@@ -3,13 +3,13 @@ import { Staff } from "./staff";
 export class UpdateStaffReq {
     username: string | undefined;
     password: string | undefined;
-    staffEntity: Staff | undefined;
+    staff: Staff | undefined;
 
 
-    constructor(username?: string, password?: string, staffEntity?: Staff) {
+    constructor(username?: string, password?: string, staff?: Staff) {
         this.username = username
         this.password = password
-        this.staffEntity = staffEntity
+        this.staff = staff
     }
 
 }
