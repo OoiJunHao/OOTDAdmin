@@ -9,10 +9,16 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
-// import { ToastrModule } from 'ngx-toastr';
+
+import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 
 //Componenets
@@ -28,6 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component';
 import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 
 
 @NgModule({
@@ -40,7 +47,8 @@ import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component
     HeaderComponent,
     NavbarComponent,
     CreateNewMealComponent,
-    ViewAllStaffComponent
+    ViewAllStaffComponent,
+    AccessRightErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,14 @@ import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component
     DropdownModule,
     CheckboxModule,
     PanelModule,
+    SplitButtonModule,
+    MessageModule,
+    MessagesModule,
+    ToastModule,
+    ConfirmDialogModule,
+    ToolbarModule
     DividerModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

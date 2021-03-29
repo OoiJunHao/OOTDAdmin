@@ -56,7 +56,7 @@ export class SessionService {
       let staff: Staff = this.getCurrentStaff();
       if (staff.accessRightEnum == AccessRightEnum.ADMIN) {
         //all staff management pages
-        if (path == "") {
+        if (path == "/staffManagement/retrieveAllStaffs") {
           return true;
         }
       } else if (staff.accessRightEnum == AccessRightEnum.EMPLOYEE) {
