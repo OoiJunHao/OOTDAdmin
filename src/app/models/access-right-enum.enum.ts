@@ -1,4 +1,4 @@
 export enum AccessRightEnum {
-    ADMIN,
-    EMPLOYEE
+    ADMIN = "ADMIN",
+    EMPLOYEE = "EMPLOYEE"
 }

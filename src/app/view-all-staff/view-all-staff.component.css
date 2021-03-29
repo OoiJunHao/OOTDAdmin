@@ -1,0 +1,12 @@
+.input {
+    margin-left: 3vw;
+    margin-bottom: 0.5vh;
+}
+
+.p-dialog-footer {
+    display: flex;
+}
+
+.p-dialog .p-dialog-footer .cancel {
+align-items: flex-start;
+}

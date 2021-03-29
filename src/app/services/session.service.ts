@@ -54,12 +54,12 @@ export class SessionService {
   checkAccessRight(path: string): boolean {
     if (this.getIsLogin()) {
       let staff: Staff = this.getCurrentStaff();
-      if (staff.accessRightEnum == AccessRightEnum.ADMIN) {
+      if (staff.type == AccessRightEnum.ADMIN) {
         //all staff management pages
-        if (path == "") {
+        if (path == "/staffManagement/retrieveAllStaffs") {
           return true;
         }
-      } else if (staff.accessRightEnum == AccessRightEnum.EMPLOYEE) {
+      } else if (staff.type == AccessRightEnum.EMPLOYEE) {
         //everything else
         if (path == " ") {
           return true;

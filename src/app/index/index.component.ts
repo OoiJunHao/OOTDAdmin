@@ -42,10 +42,10 @@ export class IndexComponent implements OnInit {
             (response: Staff) => {
                 let staff: Staff = response;
 
-                if (response.accessRightEnum?.toString() == "ADMIN") {
-                    staff.accessRightEnum = AccessRightEnum.ADMIN;
-                } else if (response.accessRightEnum?.toString() == "EMPLOYEE") {
-                    staff.accessRightEnum = AccessRightEnum.EMPLOYEE;
+                if (response.type?.toString() == "ADMIN") {
+                    staff.type = AccessRightEnum.ADMIN;
+                } else if (response.type?.toString() == "EMPLOYEE") {
+                    staff.type = AccessRightEnum.EMPLOYEE;
                 }
                 if (staff != null) {
                     this.sessionService.setIsLogin(true);
