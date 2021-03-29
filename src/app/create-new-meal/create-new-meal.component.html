@@ -1,7 +1,7 @@
 <div class="createButton">
     <p-button type="button" icon="pi-plus-circle" label="add Meal" (click)="showDialog()"></p-button>
 </div>
-
+<p-toast></p-toast>
 <p-dialog header="Create new Bento" [(visible)] = "display">
     <form class="createMealForm">
         <div class="p-field p-grid contentBoxes">
@@ -54,7 +54,7 @@
         </div>
         <br/>
         <div class="formbuttons">
-            <button class="button"> Clear </button>
+            <button class="button" (click)="clear()"> Clear </button>
             <button class="button" (click)="create()"> Submit </button>
         </div>  
     </form>

@@ -10,7 +10,9 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 
-import { ToastModule } from 'primeng/toast';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
@@ -20,6 +22,9 @@ import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -49,6 +54,7 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
     CreateNewMealComponent,
     ViewAllStaffComponent,
     AccessRightErrorComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -67,6 +73,12 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
     DropdownModule,
     CheckboxModule,
     PanelModule,
+    DividerModule,
+    MessageModule,
+    MessagesModule,
+    ToastModule,
+    SplitButtonModule,
+    ConfirmDialogModule,
     SplitButtonModule,
     MessageModule,
     MessagesModule,
