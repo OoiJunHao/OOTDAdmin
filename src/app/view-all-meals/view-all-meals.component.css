@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: row;
+    margin: 10px
+}
+
+.headerContent > h3 {
+    color: #fff;
+    transform: translateY(7px);
+    
+}
+.headerContent > .header {
+    margin: 20px
+}
+
+.mealsTable {
+    padding: 10px 30px
+}
+
+.actionButton {
+    
+}
+
+.dialogcontainer {
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+}
+
+.dialogrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.dialogcolumn {
+    margin: 4px
+}
+
+
+.columndescription {
+    font-weight: bold;
+}
