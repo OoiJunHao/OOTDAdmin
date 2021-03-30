@@ -36,6 +36,7 @@ import { CreateNewMealComponent } from './create-new-meal/create-new-meal.compon
 import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { OTUserComponent } from './otuser/otuser.component';
+import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { OTUserComponent } from './otuser/otuser.component';
     ViewAllStaffComponent,
     AccessRightErrorComponent,
     OTUserComponent,
+    ViewAllReviewsComponent,
 
   ],
   imports: [
