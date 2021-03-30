@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
         items: [
           {
             label: 'Staff Management',
-            routerLink: '/staff-management'
+            routerLink: ['/staffManagement']
           },
           {
             label: 'User Management',
@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
           },
           {
             label: "Review Management",
-            routerLink: '/review-management'
+            routerLink: ['/reviewManagement']
           }
         ]
       },

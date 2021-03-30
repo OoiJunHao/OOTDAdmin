@@ -10,19 +10,20 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
-import { SplitButtonModule } from 'primeng/splitbutton';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
+
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,7 @@ import { CreateNewMealComponent } from './create-new-meal/create-new-meal.compon
 import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { OTUserComponent } from './otuser/otuser.component';
+import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 
 
 @NgModule({
@@ -54,6 +56,7 @@ import { OTUserComponent } from './otuser/otuser.component';
     ViewAllStaffComponent,
     AccessRightErrorComponent,
     OTUserComponent,
+    ViewAllReviewsComponent,
 
   ],
   imports: [
