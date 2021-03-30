@@ -9,6 +9,7 @@ import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { OTUserComponent} from './otuser/otuser.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'accessRightError', component: AccessRightErrorComponent },

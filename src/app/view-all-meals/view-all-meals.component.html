@@ -1,8 +1,13 @@
 <app-navbar></app-navbar>
 
 <section class="content" id="content">
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+    <p-toast></p-toast>
     <div class="container">
-        <h3>All Meals</h3>
+        <div class="headerContent">
+            <h3 class="header">All Meals</h3>
+            <app-create-new-meal class="header"></app-create-new-meal>
+        </div>
         <div class="mealsTable">
             <p-table [value]="allMeals">
                 <ng-template pTemplate="header">
@@ -14,6 +19,7 @@
                         <th>average rating</th>
                         <th>name</th>
                         <th>image</th>
+                        <th>Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-meal>
@@ -25,11 +31,123 @@
                         <td>{{meal.averageRating}}</td>
                         <td>{{meal.name}}</td>
                         <td>{{meal.image}}</td>
+                        <td>
+                            <p-splitButton class="actionButton" label="View More" icon="pi pi-plus" (onDropdownClick)="setUpdateMeal(meal)" (onClick)="viewDetails(meal)" [model]="items"></p-splitButton>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
     </div>
+
+    <p-dialog header="View Bento" [(visible)] = "showViewMealDialog">
+        <div class="dialogcontainer">
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Meal ID: </div>
+                <div class="dialogcolumn">{{mealToView.mealId}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Name: </div>
+                <div class="dialogcolumn">{{mealToView.name}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Description: </div>
+                <div class="dialogcolumn">{{mealToView.description}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Price: </div>
+                <div class="dialogcolumn">{{mealToView.price | currency}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Calorie: </div>
+                <div class="dialogcolumn">{{mealToView.calorie}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Image: </div>
+                <div class="dialogcolumn">{{mealToView.image}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Meal Rating: </div>
+                <div class="dialogcolumn">
+                    {{mealToView.averageRating}}
+                </div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Category(s): </div>
+                <div class="dialogcolumn">
+                    <ul style="margin-left: 20px;">
+                        <li *ngFor="let category of mealToView.categories">{{category}}</li>
+                    </ul> 
+                </div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Ingredient(s): </div>
+                <div class="dialogcolumn">
+                    <ul style="margin-left: 20px;">
+                        <li *ngFor="let ingredient of mealToView.ingredients">{{ingredient.name}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+
+    <p-dialog header="Update Meal" [(visible)] = "showUpdateDialog">
+        <form class="updateMealForm">
+            <div class="p-field p-grid contentBoxes">
+                <label for="name" class="p-col-fixed" style = "width: 100px;">Name: </label>
+                <div class="p-col">
+                    <input id="name" type="text" pInputText name="name" [(ngModel)]="mealToUpdate.name" style="width: 450px">
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="description" class="p-col-fixed" style = "width: 100px;">Description: </label>
+                <div class="p-col">
+                    <input id="description" type="text" name="description" pInputText [(ngModel)]="mealToUpdate.description" style="width: 450px">
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="price" class="p-col-fixed" style = "width: 100px;">Price: </label>
+                <div class="p-col">
+                    <input id="price" type="text" name="price" pInputText [(ngModel)]="mealToUpdate.price" style="width: 450px">
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="calorie" class="p-col-fixed" style = "width: 100px;">Calorie: </label>
+                <div class="p-col">
+                    <input id="calorie" type="text" name="calorie" [(ngModel)]="mealToUpdate.calorie" pInputText style="width: 450px">
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
+                <div class="p-col">
+                    <input id="" type="text" name="image" [(ngModel)]="mealToUpdate.image" pInputText style="width: 450px">
+                </div>
+            </div>
+            
+            <div class="checkboxcontents">
+                <div class="content">
+                    <label for="allcategories">Categories (Choose 1 or more):</label>
+                    <div class="allcategories"*ngFor="let category of listOfCategories" class="p-field-checkbox">
+                        <p-checkbox name="categories" value="category" [value]="category" [(ngModel)]="mealToUpdate.categories"></p-checkbox>
+                        <label [for]="category">{{category}}</label>
+                    </div>
+                </div>
+                <div class="content">
+                    <label for="allingredients">Ingredients (Choose 1 or more):</label>
+                    <div class="allingredients"*ngFor="let ingredient of listOfIngredients" class="p-field-checkbox">
+                        <p-checkbox name="ingredients" value="ingredient" [value]="ingredient" [(ngModel)]="mealToUpdate.ingredients"></p-checkbox>
+                        <label [for]="ingredient">{{ingredient.name}}</label>
+                    </div>
+                </div>
+    
+            </div>
+            <br/>
+            <div class="formbuttons">
+                <button class="button" (click)="clear()"> Clear </button>
+                <button class="button" (click)="updateSubmit()"> Submit </button>
+            </div>  
+        </form>    
+    </p-dialog>
 </section>
 
 <app-footer></app-footer>
