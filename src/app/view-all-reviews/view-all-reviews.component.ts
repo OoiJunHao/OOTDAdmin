@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Review } from '../models/review';
 
 @Component({
   selector: 'app-view-all-reviews',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAllReviewsComponent implements OnInit {
 
-  constructor() { }
+  reviews: Review[];
+
+  constructor() {
+    this.reviews = new Array();
+  }
 
   ngOnInit(): void {
+
   }
 
 }
