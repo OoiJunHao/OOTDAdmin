@@ -20,6 +20,7 @@ import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 import { ToastModule } from 'primeng/toast';
+import { ChartModule } from 'primeng/chart';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -84,8 +85,8 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     ToastModule,
     ConfirmDialogModule,
     ToolbarModule,
-    DividerModule
-
+    DividerModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

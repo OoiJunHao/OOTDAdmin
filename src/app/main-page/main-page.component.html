@@ -2,12 +2,160 @@
 <!-- <app-header></app-header> -->
 <app-navbar></app-navbar>
 <section class="content" id="content">
-    <h2>Welcome back to work {{sessionService.getCurrentStaff().firstname}}
-        {{sessionService.getCurrentStaff().lastName}}</h2>
+    <h2>Welcome back to work <i>{{sessionService.getCurrentStaff().firstname}}
+            {{sessionService.getCurrentStaff().lastName}} </i></h2>
     <!-- <h4>Access Right:
         <span *ngIf="sessionService.getCurrentStaff().accessRightEnum == getAccessRight().ADMIN">Admin</span>
         <span *ngIf="sessionService.getCurrentStaff().accessRightEnum == getAccessRight().EMPLOYEE">Employee</span>)
     </h4> -->
+
+    <div class="float-container">
+        <div class="float-child">
+            <p-card header="Total Create Your Own Bento vs Fixed Bento Sales"
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <div style="margin: 0 auto; display: flex; width: 20vw; height: 40vh">
+                    <p-chart type="doughnut" [data]="cyobVSbento" width="20vw" height="40vh"></p-chart>
+                </div>
+            </p-card>
+        </div>
+
+        <div class="float-child">
+            <p-card header="Revenue Details "
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <div style="text-align: center; height: 40vh">
+                    <header style="width:100%;">Monthly Revenue (Current Month):</header>
+                    <h1 style="font-size: 50px; margin-top: 1rem;">$ {{currentMonthRevenue}}</h1>
+                    <p *ngIf="monthDiff < 0" class="diff-minus">{{monthDiff}}%</p>
+                    <p *ngIf="monthDiff >= 0" class="diff-plus">+{{monthDiff}}%</p>
+                    <header style="width:100%">Yearly Revenue (Current Year):</header>
+                    <h1 style="font-size: 50px; margin-top: 1rem;">$ {{currentYearRevenue}}</h1>
+                    <p *ngIf="yearDiff < 0" class="diff-minus">{{yearDiff}}%</p>
+                    <p *ngIf="yearDiff >= 0" class="diff-plus">+{{yearDiff}}%</p>
+                </div>
+            </p-card>
+        </div>
+    </div>
+
+    <div style="margin: auto; margin-top: 30rem; padding: 20px;">
+        <p-chart type="bar" [data]="graphData"></p-chart>
+    </div>
+
+    <div class="float-container">
+        <div class="float-child">
+            <p-card header="Further Requests"
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <p>If there are are any request to add a desired analytics panel, please contact IT department</p>
+ 
+                    <p-button (click)="displayPosition=true" icon="pi pi-info-circle" label="User Guide" styleClass="p-button-warning"></p-button>
+
+            </p-card>
+        </div>
+
+        <div class="float-child">
+            <p-card header="Deliveries by Region"
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <p-chart type="radar" [data]="regionData" [options]="regionOptions"></p-chart>
+
+            </p-card>
+        </div>
+    </div>
+
+    <p-dialog header="How to use" [(visible)]="displayPosition" position="top-left" [modal]="true"
+        [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [closable]="false">
+        <p>
+            Hi Pal, do a positive thing for your colleague today to brighten up their day! Lets strive to provide
+            the best service for our fellow customers. Most importantly, remember to eat healthy! 
+            
+        </p>
+        <small style="color:darkgrey">If there are any issues with the website, please contact IT department.</small> 
+        <p-divider align="center" type="dashed">
+            <b>Staff Management</b>
+        </p-divider>
+
+        <p>
+            Restricted access!! Only admins may access this page and alter the details of each and every staff
+        </p>
+
+        <p-divider align="center" type="dashed">
+            <b>User Management</b>
+        </p-divider>
+
+        <p>
+            User Management is where we manage all customer details. Come here if your particulars of specific customers
+            who may have issues with their profile.
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Driver Management</b>
+        </p-divider>
+
+        <p>
+            Driver Management is where we manage all our drivers. Come here to view their particulars and their work
+            history details.
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Bento Management</b>
+        </p-divider>
+
+        <p>
+            Bento Management is where we manage our bento. Come here to alter the availability and stocks for the day.
+            Creation of new bento item for sale should be done here as well. Please ensure all details are accurate
+            before saving!
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Ingredient Management</b>
+        </p-divider>
+
+        <p>
+            Ingredient Management is where we manage our ingredients. Come here to alter the availability and stocks for
+            the day.
+            Please remember to check with our chefs what is available before updating the sheet for the day. Accuracy is
+            of utmost importance.
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Promo Management</b>
+        </p-divider>
+
+        <p>
+            Promo Management is where we manage our promos. Come here to create new promo for our lovely customers.
+            Please ensure our promo value is reasonable.
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Review Management</b>
+        </p-divider>
+
+        <p>
+            Review Management is where we view reviews made by customers. Take these reviews with a pinch of salt as
+            different people have different
+            taste buds. However, if there has been grave dissapointment on a particular dish, please bring it up to your
+            head immediately.
+            OOTDFood promises to serve the best and only the best!
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Sale Transaction Management</b>
+        </p-divider>
+
+        <p>
+            View all sale transaction made by the customer here.
+        </p>
+        <p-divider align="center" type="dashed">
+            <b>Report Generation</b>
+        </p-divider>
+
+        <p>
+            Print as pdf our daily and monthly sales!
+        </p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayPosition=false" label="Ok" styleClass="p-button-text">
+            </p-button>
+        </ng-template>
+    </p-dialog>
+
+
+
+
+
+
+    <!--
     <p-panel header="User Guide">
         <p>
             Hi pal, do a positive thing for your colleague today to brighten up their day! Lets strive to provide
@@ -90,7 +238,8 @@
         <p>
             Print as pdf our daily and monthly sales!
         </p>
-    </p-panel>
+    </p-panel> 
+-->
 </section>
 
 <app-footer></app-footer>
