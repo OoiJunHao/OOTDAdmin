@@ -23,6 +23,7 @@ export class ViewAllMealsComponent implements OnInit {
   mealToUpdate: Meal;
   listOfCategories: Category[];
   listOfIngredients: Ingredient[];
+  checked: string;
 
   constructor(private mealService: BentoManagementService,
     public sessionService: SessionService, private router: Router,
@@ -33,6 +34,7 @@ export class ViewAllMealsComponent implements OnInit {
     this.mealToUpdate = new Meal();
     this.listOfCategories = new Array();
     this.listOfIngredients = new Array();
+    this.checked = "";
   }
 
   ngOnInit(): void {
@@ -84,6 +86,12 @@ export class ViewAllMealsComponent implements OnInit {
 
   updateMeal() {
     this.showUpdateDialog = true;
+    if (this.mealToUpdate.isAvailable) {
+      this.checked = "true";
+    } else {
+      this.checked = "false";
+    }
+    console.log(this.checked);
   }
 
   deleteMeal() {
@@ -94,7 +102,16 @@ export class ViewAllMealsComponent implements OnInit {
     this.mealToUpdate = meal;
   }
 
+  test() {
+    console.log(this.mealToUpdate.isAvailable);
+  }
+
   updateSubmit() {
+    if (this.checked == "true") {
+      this.mealToUpdate.isAvailable = true;
+    } else {
+      this.mealToUpdate.isAvailable = false;
+    }
     this.mealService.updateMeal(this.mealToUpdate).subscribe(
       response => {
         console.log(response);
@@ -119,7 +136,7 @@ export class ViewAllMealsComponent implements OnInit {
               this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId})
               window.location.reload();
             }, error => {
-              console.log(error)
+              this.messageService.add({severity: 'error', summary: 'Service Message', detail: error})
             }
           )
         },

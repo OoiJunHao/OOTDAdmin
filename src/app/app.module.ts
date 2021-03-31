@@ -23,6 +23,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 
 import { ToastModule } from 'primeng/toast';
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 
 //Componenets
@@ -88,7 +89,8 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     ToastModule,
     ConfirmDialogModule,
     ToolbarModule,
-    DividerModule
+    DividerModule,
+    RadioButtonModule
 
   ],
   providers: [],
