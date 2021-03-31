@@ -81,7 +81,7 @@ export class ViewAllMealsComponent implements OnInit {
       this.mealService.retrieveIngredients().subscribe(response => {
         this.listOfIngredientsObject = response;
       }, error => {
-        console.log("********* create new meal: " + error);
+        console.log("********* create new meal " + error);
       })
       
   }
