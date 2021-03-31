@@ -2,18 +2,72 @@
 <!-- <app-header></app-header> -->
 <app-navbar></app-navbar>
 <section class="content" id="content">
-    <h2>Welcome back to work {{sessionService.getCurrentStaff().firstname}}
-        {{sessionService.getCurrentStaff().lastName}}</h2>
+    <h2>Welcome back to work <i>{{sessionService.getCurrentStaff().firstname}}
+            {{sessionService.getCurrentStaff().lastName}} </i></h2>
     <!-- <h4>Access Right:
         <span *ngIf="sessionService.getCurrentStaff().accessRightEnum == getAccessRight().ADMIN">Admin</span>
         <span *ngIf="sessionService.getCurrentStaff().accessRightEnum == getAccessRight().EMPLOYEE">Employee</span>)
     </h4> -->
-    <p-panel header="User Guide">
-        <p>
-            Hi pal, do a positive thing for your colleague today to brighten up their day! Lets strive to provide
-            the best service for our fellow customers. Most importantly, remember to eat healthy!
-        </p>
 
+    <div class="float-container">
+        <div class="float-child">
+            <p-card header="Total Create Your Own Bento vs Fixed Bento Sales"
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <div style="margin: 0 auto; display: flex; width: 20vw; height: 40vh">
+                    <p-chart type="doughnut" [data]="cyobVSbento" width="20vw" height="40vh"></p-chart>
+                </div>
+            </p-card>
+        </div>
+
+        <div class="float-child">
+            <p-card header="Revenue Details "
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <div style="text-align: center; height: 40vh">
+                    <header style="width:100%;">Monthly Revenue (Current Month):</header>
+                    <h1 style="font-size: 50px; margin-top: 1rem;">$ {{currentMonthRevenue.toFixed(2)}}</h1>
+                    <p *ngIf="monthDiff < 0" class="diff-minus">{{monthDiff.toFixed(2)}}%</p>
+                    <p *ngIf="monthDiff >= 0" class="diff-plus">+{{monthDiff.toFixed(2)}}%</p>
+                    <header style="width:100%">Yearly Revenue (Current Year):</header>
+                    <h1 style="font-size: 50px; margin-top: 1rem;">$ {{currentYearRevenue.toFixed(2)}}</h1>
+                    <p *ngIf="yearDiff < 0" class="diff-minus">{{yearDiff.toFixed(2)}}%</p>
+                    <p *ngIf="yearDiff >= 0" class="diff-plus">+{{yearDiff.toFixed(2)}}%</p>
+                </div>
+            </p-card>
+        </div>
+    </div>
+
+    <div style="margin: auto; margin-top: 30rem; padding: 20px;">
+        <p-chart type="bar" [data]="graphData"></p-chart>
+    </div>
+
+    <div class="float-container">
+        <div class="float-child">
+            <p-card header="Further Requests"
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <p>If there are are any request to add a desired analytics panel, please contact IT department</p>
+ 
+                    <p-button (click)="displayPosition=true" icon="pi pi-info-circle" label="User Guide" styleClass="p-button-warning"></p-button>
+
+            </p-card>
+        </div>
+
+        <div class="float-child">
+            <p-card header="Deliveries by Region"
+                [style]="{'width': '90%', 'margin-bottom': '2em', 'text-align': 'center', 'margin-left': 'auto', 'margin-right': 'auto'}">
+                <p-chart type="radar" [data]="regionData" [options]="regionOptions"></p-chart>
+
+            </p-card>
+        </div>
+    </div>
+
+    <p-dialog header="How to use" [(visible)]="displayPosition" position="top-left" [modal]="true"
+        [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" [closable]="false">
+        <p>
+            Hi Pal, do a positive thing for your colleague today to brighten up their day! Lets strive to provide
+            the best service for our fellow customers. Most importantly, remember to eat healthy! 
+            
+        </p>
+        <small style="color:darkgrey">If there are any issues with the website, please contact IT department.</small> 
         <p-divider align="center" type="dashed">
             <b>Staff Management</b>
         </p-divider>
@@ -90,7 +144,12 @@
         <p>
             Print as pdf our daily and monthly sales!
         </p>
-    </p-panel>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayPosition=false" label="Ok" styleClass="p-button-text">
+            </p-button>
+        </ng-template>
+    </p-dialog>
+
 </section>
 
 <app-footer></app-footer>

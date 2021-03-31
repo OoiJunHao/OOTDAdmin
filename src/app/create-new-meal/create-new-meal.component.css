@@ -18,5 +18,12 @@
 }
 
 .content {
-    margin: 5px
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.error {
+    color:red;
 }

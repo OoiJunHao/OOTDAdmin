@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // PrimeNg Modules
 import { MenubarModule } from 'primeng/menubar';
@@ -23,6 +24,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 
 import { ToastModule } from 'primeng/toast';
+import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
 
 
@@ -67,6 +69,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
+    ReactiveFormsModule,
     //PRIMENG MODULES
     MenubarModule,
     TableModule,
@@ -90,6 +93,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     ConfirmDialogModule,
     ToolbarModule,
     DividerModule,
+    ChartModule,
     RadioButtonModule
 
   ],

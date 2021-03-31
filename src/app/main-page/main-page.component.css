@@ -1,7 +1,44 @@
 h2 {
     color: #ffaa00;
+    margin-left: 1.5rem;
 }
 
 b {
     font-weight: 200;
+}
+
+.float-container {
+    /*border: 3px solid #fff;*/
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    justify-content: center;
+    margin: auto;
+    /*border: 2px solid red;*/
+}  
+
+.diff-minus {
+    border: 1px solid red;
+    border-radius: 10px;
+    font-size: 20px;
+    color: red;
+    width: 30%;
+    margin: auto;
+    margin-bottom: 2rem;
+    margin-top: -1rem;
+}
+
+.diff-plus {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    font-size: 20px;
+    color: greenyellow;
+    width: 30%;
+    margin: auto;
+    margin-bottom: 2rem;
+    margin-top: -1rem;
 }

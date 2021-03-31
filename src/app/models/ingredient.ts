@@ -22,4 +22,6 @@ export class Ingredient {
         this.type = type
     }
 
+    
+
 }
