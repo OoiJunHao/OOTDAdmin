@@ -9,6 +9,7 @@ export class Meal {
     averageRating: number | undefined;
     name: string | undefined;
     image: string | undefined;
+    isAvailable: boolean | undefined;
 
     categories: Category[] | undefined;
     ingredients :Ingredient[] | undefined;
@@ -21,6 +22,7 @@ export class Meal {
         averageRating?: number,
         name?: string,
         image?: string,
+        available? : boolean,
         categories?: Category[],
         ingredients?: Ingredient[]
     ) {
@@ -31,6 +33,7 @@ export class Meal {
         this.averageRating = averageRating
         this.name = name
         this.image = image
+        this.isAvailable = available 
         this.categories = categories
         this.ingredients = ingredients
     }

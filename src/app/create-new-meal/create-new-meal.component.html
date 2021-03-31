@@ -1,61 +1,97 @@
 <div class="createButton">
-    <p-button type="button" icon="pi-plus-circle" label="add Meal" (click)="showDialog()"></p-button>
+    <p-button type="button" icon="pi pi-plus" label="Add Meal" (click)="showDialog()"></p-button>
 </div>
 <p-toast></p-toast>
 <p-dialog header="Create new Bento" [(visible)] = "display">
-    <form class="createMealForm">
+    <div *ngIf="resultError == true" style="color:red;">
+        {{message}}
+    </div>
+    <form class="createMealForm" #createMealForm="ngForm" (ngSubmit)="create(createMealForm)">
         <div class="p-field p-grid contentBoxes">
             <label for="name" class="p-col-fixed" style = "width: 100px;">Name: </label>
             <div class="p-col">
-                <input id="name" type="text" pInputText name="name" [(ngModel)]="mealToCreate.name" style="width: 450px">
+                <input id="name" type="text" pInputText name="name" #name="ngModel" [(ngModel)]="mealToCreate.name" style="width: 450px" required="true">
             </div>
+            <div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+                <div class="error" *ngIf="name.errors != null && name.errors.required">
+                    Name is required.
+                </div>
+			</div>
         </div>
         <div class="p-field p-grid contentBoxes">
             <label for="description" class="p-col-fixed" style = "width: 100px;">Description: </label>
             <div class="p-col">
-                <input id="description" type="text" name="description" pInputText [(ngModel)]="mealToCreate.description" style="width: 450px">
+                <input id="description" type="text" name="description" #description="ngModel" pInputText [(ngModel)]="mealToCreate.description" style="width: 450px" required="true">
             </div>
+            <div *ngIf="description.invalid && (description.dirty || description.touched || submitted)" class="errorText">
+                <div class="error" *ngIf="description.errors != null && description.errors.required">
+                    Description is required.
+                </div>
+			</div>
         </div>
         <div class="p-field p-grid contentBoxes">
             <label for="price" class="p-col-fixed" style = "width: 100px;">Price: </label>
             <div class="p-col">
-                <input id="price" type="text" name="price" pInputText [(ngModel)]="mealToCreate.price" style="width: 450px">
+                <input id="price" type="text" name="price" pInputText #price="ngModel" [(ngModel)]="mealToCreate.price" style="width: 450px" required="true">
             </div>
+            <div *ngIf="price.invalid && (price.dirty || price.touched || submitted)" class="errorText">
+                <div class="error" *ngIf="price.errors != null && price.errors.required">
+                    Price is required.
+                </div>
+			</div>
         </div>
         <div class="p-field p-grid contentBoxes">
             <label for="calorie" class="p-col-fixed" style = "width: 100px;">Calorie: </label>
             <div class="p-col">
-                <input id="calorie" type="text" name="calorie" [(ngModel)]="mealToCreate.calorie" pInputText style="width: 450px">
+                <input id="calorie" type="text" name="calorie" #calorie="ngModel" [(ngModel)]="mealToCreate.calorie" pInputText style="width: 450px" required="true">
             </div>
+            <div *ngIf="calorie.invalid && (calorie.dirty || calorie.touched || submitted)" class="errorText">
+                <div class="error" *ngIf="calorie.errors != null && calorie.errors.required">
+                    Calorie is required.
+                </div>
+			</div>
         </div>
         <div class="p-field p-grid contentBoxes">
             <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
             <div class="p-col">
-                <input id="" type="text" name="image" [(ngModel)]="mealToCreate.image" pInputText style="width: 450px">
+                <input id="" type="text" name="image" #image="ngModel" [(ngModel)]="mealToCreate.image" pInputText style="width: 450px" required="true">
             </div>
+            <div *ngIf="image.invalid && (image.dirty || image.touched || submitted)" class="errorText">
+                <div class="error" *ngIf="image.errors != null && image.errors.required">
+                    Image is required.
+                </div>
+			</div>
         </div>
         
         <div class="checkboxcontents">
             <div class="content">
                 <label for="allcategories">Categories (Choose 1 or more):</label>
                 <div class="allcategories"*ngFor="let category of listOfCategories" class="p-field-checkbox">
-                    <p-checkbox name="categories" value="category" [value]="category" [(ngModel)]="selectedCategories"></p-checkbox>
+                    <p-checkbox name="categories" value="category"  [value]="category" [(ngModel)]="selectedCategories" [required]="true"></p-checkbox>
                     <label [for]="category">{{category}}</label>
                 </div>
+                <div *ngIf="categoriesError == true" style="color:red;">
+                    {{categoriesMessage}}
+                </div>
+                
             </div>
             <div class="content">
                 <label for="allingredients">Ingredients (Choose 1 or more):</label>
                 <div class="allingredients"*ngFor="let ingredient of listOfIngredients" class="p-field-checkbox">
-                    <p-checkbox name="ingredients" value="ingredient" [value]="ingredient" [(ngModel)]="selectedIngredients"></p-checkbox>
+                    <p-checkbox name="ingredients" value="ingredient" [value]="ingredient" [(ngModel)]="selectedIngredients" [required]="true"></p-checkbox>
                     <label [for]="ingredient">{{ingredient.name}}</label>
                 </div>
+                <div *ngIf="ingredientsError == true" style="color:red;">
+                    {{ingredientsMessage}}
+                </div>
             </div>
+            
 
         </div>
         <br/>
         <div class="formbuttons">
-            <button class="button" (click)="clear()"> Clear </button>
-            <button class="button" (click)="create()"> Submit </button>
+            <p-button class="button" (click)="clear()"> Clear </p-button>
+            <p-button class="button" type="submit"> Submit </p-button>
         </div>  
     </form>
 </p-dialog>

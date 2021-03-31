@@ -19,6 +19,7 @@
                         <th>average rating</th>
                         <th>name</th>
                         <th>image</th>
+                        <th>Available</th>
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -31,8 +32,10 @@
                         <td>{{meal.averageRating}}</td>
                         <td>{{meal.name}}</td>
                         <td>{{meal.image}}</td>
+                        <td *ngIf="meal.isAvailable" style="color: greenyellow">True</td>
+                        <td *ngIf="!meal.isAvailable" style="color: crimson">False</td>
                         <td>
-                            <p-splitButton class="actionButton" label="View More" icon="pi pi-plus" (onDropdownClick)="setUpdateMeal(meal)" (onClick)="viewDetails(meal)" [model]="items"></p-splitButton>
+                            <p-splitButton class="actionButton" label="View More" icon="pi pi-eye" (onDropdownClick)="setUpdateMeal(meal)" (onClick)="viewDetails(meal)" [model]="items"></p-splitButton>
                         </td>
                     </tr>
                 </ng-template>
@@ -73,6 +76,10 @@
                 </div>
             </div>
             <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Available: </div>
+                <div class="dialogcolumn">{{mealToView.isAvailable}}</div>
+            </div>
+            <div class="dialogrow">
                 <div class="dialogcolumn columndescription" >Category(s): </div>
                 <div class="dialogcolumn">
                     <ul style="margin-left: 20px;">
@@ -92,35 +99,63 @@
     </p-dialog>
 
     <p-dialog header="Update Meal" [(visible)] = "showUpdateDialog">
-        <form class="updateMealForm">
+        <div *ngIf="resultError == true" style="color:red;">
+            {{message}}
+        </div>
+        <form class="updateMealForm" #updateMealForm="ngForm" (ngSubmit)="updateSubmit(updateMealForm)">
             <div class="p-field p-grid contentBoxes">
                 <label for="name" class="p-col-fixed" style = "width: 100px;">Name: </label>
                 <div class="p-col">
-                    <input id="name" type="text" pInputText name="name" [(ngModel)]="mealToUpdate.name" style="width: 450px">
+                    <input id="name" type="text" pInputText name="name" #name="ngModel" [(ngModel)]="mealToUpdate.name" style="width: 450px" required="true">
+                </div>
+                <div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="name.errors != null && name.errors.required">
+                        Name is required.
+                    </div>
                 </div>
             </div>
             <div class="p-field p-grid contentBoxes">
                 <label for="description" class="p-col-fixed" style = "width: 100px;">Description: </label>
                 <div class="p-col">
-                    <input id="description" type="text" name="description" pInputText [(ngModel)]="mealToUpdate.description" style="width: 450px">
+                    <input id="description" type="text" name="description" #description="ngModel" pInputText [(ngModel)]="mealToUpdate.description" style="width: 450px" required="true">
+                </div>
+                <div *ngIf="description.invalid && (description.dirty || description.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="description.errors != null && description.errors.required">
+                        Description is required.
+                    </div>
                 </div>
             </div>
             <div class="p-field p-grid contentBoxes">
                 <label for="price" class="p-col-fixed" style = "width: 100px;">Price: </label>
                 <div class="p-col">
-                    <input id="price" type="text" name="price" pInputText [(ngModel)]="mealToUpdate.price" style="width: 450px">
+                    <input id="price" type="text" name="price" pInputText #price="ngModel" [(ngModel)]="mealToUpdate.price" style="width: 450px" required="true">
+                </div>
+                <div *ngIf="price.invalid && (price.dirty || price.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="price.errors != null && price.errors.required">
+                        Price is required.
+                    </div>
                 </div>
             </div>
             <div class="p-field p-grid contentBoxes">
                 <label for="calorie" class="p-col-fixed" style = "width: 100px;">Calorie: </label>
                 <div class="p-col">
-                    <input id="calorie" type="text" name="calorie" [(ngModel)]="mealToUpdate.calorie" pInputText style="width: 450px">
+                    <input id="calorie" type="text" name="calorie" #calorie="ngModel" [(ngModel)]="mealToUpdate.calorie" pInputText style="width: 450px" required="true">
+                </div>
+                <div *ngIf="calorie.invalid && (calorie.dirty || calorie.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="calorie.errors != null && calorie.errors.required">
+                        Calorie is required.
+                    </div>
                 </div>
             </div>
             <div class="p-field p-grid contentBoxes">
                 <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
                 <div class="p-col">
-                    <input id="" type="text" name="image" [(ngModel)]="mealToUpdate.image" pInputText style="width: 450px">
+                    <input id="" type="text" name="image" #image="ngModel" [(ngModel)]="mealToUpdate.image" pInputText style="width: 450px" required="true">
+                </div>
+                <div *ngIf="image.invalid && (image.dirty || image.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="image.errors != null && image.errors.required">
+                        Image is required.
+                    </div>
                 </div>
             </div>
             
@@ -128,23 +163,39 @@
                 <div class="content">
                     <label for="allcategories">Categories (Choose 1 or more):</label>
                     <div class="allcategories"*ngFor="let category of listOfCategories" class="p-field-checkbox">
-                        <p-checkbox name="categories" value="category" [value]="category" [(ngModel)]="mealToUpdate.categories"></p-checkbox>
+                        <p-checkbox name="categories" value="category" [value]="category" [(ngModel)]="mealToUpdate.categories" [required]="true"></p-checkbox>
                         <label [for]="category">{{category}}</label>
+                    </div>
+                    <div class="error" *ngIf="categoriesError == true" style="color:red;">
+                        {{categoriesMessage}}
                     </div>
                 </div>
                 <div class="content">
                     <label for="allingredients">Ingredients (Choose 1 or more):</label>
-                    <div class="allingredients"*ngFor="let ingredient of listOfIngredients" class="p-field-checkbox">
-                        <p-checkbox name="ingredients" value="ingredient" [value]="ingredient" [(ngModel)]="mealToUpdate.ingredients"></p-checkbox>
+                    <div class="allingredients"*ngFor="let ingredient of listOfIngredientsObject" class="p-field-checkbox">
+                        <p-checkbox name="ingredients" value="ingredient.ingredientId" [value]="ingredient.ingredientId" [(ngModel)]="listOfIngredients" [required]="true"></p-checkbox>
                         <label [for]="ingredient">{{ingredient.name}}</label>
+                    </div>
+                    <div class="error" *ngIf="ingredientsError == true" style="color:red;">
+                        {{ingredientsMessage}}
                     </div>
                 </div>
     
             </div>
+            <div class="availability">
+                <div class="p-field-radiobutton">
+                    <p-radioButton name="available" value="true" [(ngModel)]="checked" inputId="true" ></p-radioButton>
+                    <label for="true">Available</label>
+                </div>
+                <div class="p-field-radiobutton">
+                    <p-radioButton name="unavailable" value="false" [(ngModel)]="checked" inputId="false"></p-radioButton>
+                    <label for="true">Not Available</label>
+                </div>        
+            </div>
             <br/>
             <div class="formbuttons">
-                <button class="button" (click)="clear()"> Clear </button>
-                <button class="button" (click)="updateSubmit()"> Submit </button>
+                <p-button class="button" (click)="clear()"> Clear </p-button>
+                <p-button class="button" type="submit"> Submit </p-button>
             </div>  
         </form>    
     </p-dialog>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // PrimeNg Modules
 import { MenubarModule } from 'primeng/menubar';
@@ -9,8 +10,10 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
+
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
 import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -19,8 +22,11 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
+
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
+import {RadioButtonModule} from 'primeng/radiobutton';
+
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -63,6 +69,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
+    ReactiveFormsModule,
     //PRIMENG MODULES
     MenubarModule,
     TableModule,
@@ -86,7 +93,9 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     ConfirmDialogModule,
     ToolbarModule,
     DividerModule,
-    ChartModule
+    ChartModule,
+    RadioButtonModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

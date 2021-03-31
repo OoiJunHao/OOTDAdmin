@@ -9,7 +9,7 @@ export class OTUser {
     email: string;
     password: string;
     contactNum: number;
-    firstName: string;
+    firstname: string;
     lastName: string;
     dob: Date;
     profilePic: string;
@@ -26,7 +26,7 @@ export class OTUser {
         email: string,
         password: string,
         contactNum: number,
-        firstName: string,
+        firstname: string,
         lastName: string,
         dob: Date,
         profilePic: string,
@@ -40,7 +40,7 @@ export class OTUser {
         this.email = email
         this.password = password
         this.contactNum = contactNum
-        this.firstName = firstName
+        this.firstname = firstname
         this.lastName = lastName
         this.dob = dob
         this.profilePic = profilePic

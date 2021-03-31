@@ -7,6 +7,8 @@ import { ConfirmationService, MenuItem, Message, MessageService } from 'primeng/
 import { UpdateMealReq } from '../models/UpdateMealReq';
 import { Category } from '../models/category.enum';
 import { Ingredient } from '../models/ingredient';
+import { NgForm } from '@angular/forms';
+import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-view-all-meals',
@@ -22,7 +24,17 @@ export class ViewAllMealsComponent implements OnInit {
   mealToView: Meal;
   mealToUpdate: Meal;
   listOfCategories: Category[];
-  listOfIngredients: Ingredient[];
+  listOfIngredients: number[];
+  listOfIngredientsObject: Ingredient[]
+  checked: string;
+  submitted: boolean;
+  ingredientsError: boolean;
+	categoriesError: boolean;
+	categoriesMessage: string | undefined;
+  ingredientsMessage: string | undefined;
+  resultError: boolean;
+  message: string | undefined;
+
 
   constructor(private mealService: BentoManagementService,
     public sessionService: SessionService, private router: Router,
@@ -33,6 +45,12 @@ export class ViewAllMealsComponent implements OnInit {
     this.mealToUpdate = new Meal();
     this.listOfCategories = new Array();
     this.listOfIngredients = new Array();
+    this.checked = "";
+    this.submitted = false;
+    this.ingredientsError = false;
+		this.categoriesError = false;
+    this.resultError = false;
+    this.listOfIngredientsObject = new Array();
   }
 
   ngOnInit(): void {
@@ -61,7 +79,7 @@ export class ViewAllMealsComponent implements OnInit {
       })
   
       this.mealService.retrieveIngredients().subscribe(response => {
-        this.listOfIngredients = response;
+        this.listOfIngredientsObject = response;
       }, error => {
         console.log("********* create new meal: " + error);
       })
@@ -84,6 +102,12 @@ export class ViewAllMealsComponent implements OnInit {
 
   updateMeal() {
     this.showUpdateDialog = true;
+    if (this.mealToUpdate.isAvailable) {
+      this.checked = "true";
+    } else {
+      this.checked = "false";
+    }
+    console.log(this.checked);
   }
 
   deleteMeal() {
@@ -91,20 +115,68 @@ export class ViewAllMealsComponent implements OnInit {
   }
 
   setUpdateMeal(meal: Meal) {
+    this.categoriesError = false;
+    this.ingredientsError = false;
     this.mealToUpdate = meal;
+    this.listOfIngredients = new Array();
+    this.mealToUpdate.ingredients?.forEach(element => {
+      this.listOfIngredients.push(element.ingredientId);  
+    });
+    console.log(this.listOfIngredients.length);
   }
 
-  updateSubmit() {
-    this.mealService.updateMeal(this.mealToUpdate).subscribe(
-      response => {
-        console.log(response);
-        this.showUpdateDialog = false;
-        this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId})
-        window.location.reload();
-      }, error => {
-        console.log(error);
+  test() {
+    console.log(this.mealToUpdate.isAvailable);
+  }
+
+  updateSubmit(updateMealForm: NgForm) {
+    if (this.checked == "true") {
+      this.mealToUpdate.isAvailable = true;
+    } else {
+      this.mealToUpdate.isAvailable = false;
+    }
+    this.submitted = true;
+    if (this.mealToUpdate.categories?.length == 0 || this.listOfIngredients?.length == 0) {
+      if (this.mealToUpdate.categories?.length == 0) {
+        this.categoriesError = true;  
+        this.categoriesMessage = "Enter at least one category!";
+      } else {
+        this.categoriesError = false;
+      }  
+      
+      if (this.listOfIngredients?.length == 0) {
+        this.ingredientsError = true;  
+        this.ingredientsMessage = "Enter at least one ingredient!";  
+      } else {
+        this.ingredientsError = false;
       }
-    )
+    } else {
+      this.retrieveSelectedIngredients();
+      if (updateMealForm.valid) {
+        this.mealService.updateMeal(this.mealToUpdate).subscribe(
+          response => {
+            console.log(response);
+            this.showUpdateDialog = false;
+            this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId})
+            window.location.reload();
+          }, error => {
+            this.resultError = true;
+            this.message = "An error has occurred while creating the new product: " + error;
+          }
+        )
+      }
+    }
+  }
+
+  retrieveSelectedIngredients() {
+    this.mealToUpdate.ingredients = new Array();
+    this.listOfIngredients.forEach(element => {
+      this.listOfIngredientsObject.forEach(element2 => {
+        if (element2.ingredientId == element) {
+          this.mealToUpdate.ingredients?.push(element2);
+        }
+      });
+    });
   }
 
   confirmDelete() {
@@ -119,7 +191,7 @@ export class ViewAllMealsComponent implements OnInit {
               this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId})
               window.location.reload();
             }, error => {
-              console.log(error)
+              this.messageService.add({severity: 'error', summary: 'Service Message', detail: error})
             }
           )
         },
