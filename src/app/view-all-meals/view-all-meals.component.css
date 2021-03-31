@@ -60,3 +60,18 @@
 .p-field-radiobutton {
     margin: 10px
 }
+
+.formbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    margin: 5px
+}
+
+.error {
+    color: red;
+}

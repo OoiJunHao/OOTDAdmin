@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // PrimeNg Modules
 import { MenubarModule } from 'primeng/menubar';
@@ -67,6 +68,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
+    ReactiveFormsModule,
     //PRIMENG MODULES
     MenubarModule,
     TableModule,
