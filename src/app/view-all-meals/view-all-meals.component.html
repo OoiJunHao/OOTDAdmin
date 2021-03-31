@@ -19,6 +19,7 @@
                         <th>average rating</th>
                         <th>name</th>
                         <th>image</th>
+                        <th>Available</th>
                         <th>Actions</th>
                     </tr>
                 </ng-template>
@@ -31,8 +32,10 @@
                         <td>{{meal.averageRating}}</td>
                         <td>{{meal.name}}</td>
                         <td>{{meal.image}}</td>
+                        <td *ngIf="meal.isAvailable" style="color: greenyellow">True</td>
+                        <td *ngIf="!meal.isAvailable" style="color: crimson">False</td>
                         <td>
-                            <p-splitButton class="actionButton" label="View More" icon="pi pi-plus" (onDropdownClick)="setUpdateMeal(meal)" (onClick)="viewDetails(meal)" [model]="items"></p-splitButton>
+                            <p-splitButton class="actionButton" label="View More" icon="pi pi-eye" (onDropdownClick)="setUpdateMeal(meal)" (onClick)="viewDetails(meal)" [model]="items"></p-splitButton>
                         </td>
                     </tr>
                 </ng-template>
@@ -71,6 +74,10 @@
                 <div class="dialogcolumn">
                     {{mealToView.averageRating}}
                 </div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription" >Available: </div>
+                <div class="dialogcolumn">{{mealToView.isAvailable}}</div>
             </div>
             <div class="dialogrow">
                 <div class="dialogcolumn columndescription" >Category(s): </div>
@@ -140,6 +147,16 @@
                     </div>
                 </div>
     
+            </div>
+            <div class="availability">
+                <div class="p-field-radiobutton">
+                    <p-radioButton name="available" value="true" [(ngModel)]="checked" inputId="true" ></p-radioButton>
+                    <label for="true">Available</label>
+                </div>
+                <div class="p-field-radiobutton">
+                    <p-radioButton name="unavailable" value="false" [(ngModel)]="checked" inputId="false"></p-radioButton>
+                    <label for="true">Not Available</label>
+                </div>        
             </div>
             <br/>
             <div class="formbuttons">

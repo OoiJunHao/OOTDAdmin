@@ -21,7 +21,7 @@
 }
 
 .mealsTable {
-    padding: 10px 30px
+    
 }
 
 .actionButton {
@@ -48,4 +48,15 @@
 
 .columndescription {
     font-weight: bold;
+}
+
+.availability {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-field-radiobutton {
+    margin: 10px
 }
