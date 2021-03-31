@@ -99,6 +99,9 @@
     </p-dialog>
 
     <p-dialog header="Update Meal" [(visible)] = "showUpdateDialog">
+        <div *ngIf="resultError == true" style="color:red;">
+            {{message}}
+        </div>
         <form class="updateMealForm" #updateMealForm="ngForm" (ngSubmit)="updateSubmit(updateMealForm)">
             <div class="p-field p-grid contentBoxes">
                 <label for="name" class="p-col-fixed" style = "width: 100px;">Name: </label>
@@ -163,7 +166,7 @@
                         <p-checkbox name="categories" value="category" [value]="category" [(ngModel)]="mealToUpdate.categories" [required]="true"></p-checkbox>
                         <label [for]="category">{{category}}</label>
                     </div>
-                    <div *ngIf="categoriesError == true" style="color:red;">
+                    <div class="error" *ngIf="categoriesError == true" style="color:red;">
                         {{categoriesMessage}}
                     </div>
                 </div>
@@ -173,7 +176,7 @@
                         <p-checkbox name="ingredients" value="ingredient.ingredientId" [value]="ingredient.ingredientId" [(ngModel)]="listOfIngredients" [required]="true"></p-checkbox>
                         <label [for]="ingredient">{{ingredient.name}}</label>
                     </div>
-                    <div *ngIf="ingredientsError == true" style="color:red;">
+                    <div class="error" *ngIf="ingredientsError == true" style="color:red;">
                         {{ingredientsMessage}}
                     </div>
                 </div>

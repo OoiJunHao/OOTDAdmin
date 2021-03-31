@@ -81,7 +81,7 @@ export class ViewAllMealsComponent implements OnInit {
       this.mealService.retrieveIngredients().subscribe(response => {
         this.listOfIngredientsObject = response;
       }, error => {
-        console.log("********* create new meal " + error);
+        console.log("********* create new meal: " + error);
       })
       
   }
@@ -115,6 +115,8 @@ export class ViewAllMealsComponent implements OnInit {
   }
 
   setUpdateMeal(meal: Meal) {
+    this.categoriesError = false;
+    this.ingredientsError = false;
     this.mealToUpdate = meal;
     this.listOfIngredients = new Array();
     this.mealToUpdate.ingredients?.forEach(element => {
@@ -134,7 +136,7 @@ export class ViewAllMealsComponent implements OnInit {
       this.mealToUpdate.isAvailable = false;
     }
     this.submitted = true;
-    if (this.mealToUpdate.categories?.length == 0 || this.mealToUpdate.ingredients?.length == 0) {
+    if (this.mealToUpdate.categories?.length == 0 || this.listOfIngredients?.length == 0) {
       if (this.mealToUpdate.categories?.length == 0) {
         this.categoriesError = true;  
         this.categoriesMessage = "Enter at least one category!";
@@ -142,7 +144,7 @@ export class ViewAllMealsComponent implements OnInit {
         this.categoriesError = false;
       }  
       
-      if (this.mealToUpdate.ingredients?.length == 0) {
+      if (this.listOfIngredients?.length == 0) {
         this.ingredientsError = true;  
         this.ingredientsMessage = "Enter at least one ingredient!";  
       } else {
@@ -158,7 +160,8 @@ export class ViewAllMealsComponent implements OnInit {
             this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId})
             window.location.reload();
           }, error => {
-            console.log(error);
+            this.resultError = true;
+            this.message = "An error has occurred while creating the new product: " + error;
           }
         )
       }
