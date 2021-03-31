@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Review } from '../models/review';
+import { ReviewManagementService } from '../services/review-management.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-view-all-reviews',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAllReviewsComponent implements OnInit {
 
-  constructor() { }
+  reviews: Review[];
+
+  constructor(private reviewManagementService: ReviewManagementService, public sessionService: SessionService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.reviews = new Array();
+  }
 
   ngOnInit(): void {
+
+    this.reviewManagementService.getReviews().subscribe(
+      res => {
+        this.reviews = res;
+      },
+      err => {
+        console.log('********** VIEWREVIEWCOMPONENT.ts: ' + err);
+      }
+    );
   }
 
 }

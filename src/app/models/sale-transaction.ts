@@ -1,15 +1,17 @@
 import { Address } from "./address";
+import { CreditCard } from "./credit-card";
 import { Delivery } from "./delivery.enum";
 import { Driver } from "./driver";
 import { OTUser } from "./ot-user";
 import { PromoCode } from "./promo-code";
+import { SaleTransactionLine } from "./sale-transaction-line";
 
 export class SaleTransaction {
     saleTransactionId: number;
     totalLineItem: number;
     totalQuantity: number;
     totalAmount: number;
-    transactionDate: Date;
+    transactionDateTime: Date;
     deliveryDateTime: Date;
     voidRefund: boolean;
     deliveryStatus: Delivery;
@@ -18,9 +20,8 @@ export class SaleTransaction {
     driver: Driver;
     user: OTUser;
     address: Address;
-
-
-
+    saleTransactionLineItemEntities: SaleTransactionLine[];
+    creditCardEntity: CreditCard
 
     constructor(
         saleTransactionId: number,
@@ -34,13 +35,15 @@ export class SaleTransaction {
         promo: PromoCode,
         driver: Driver,
         user: OTUser,
-        address: Address
+        address: Address,
+        saleTransactionLine: SaleTransactionLine[],
+        creditCardEntity: CreditCard
     ) {
         this.saleTransactionId = saleTransactionId
         this.totalLineItem = totalLineItem
         this.totalQuantity = totalQuantity
         this.totalAmount = totalAmount
-        this.transactionDate = transactionDate
+        this.transactionDateTime = transactionDate
         this.deliveryDateTime = deliveryDateTime
         this.voidRefund = voidRefund
         this.deliveryStatus = deliveryStatus
@@ -48,6 +51,8 @@ export class SaleTransaction {
         this.driver = driver
         this.user = user
         this.address = address
+        this.saleTransactionLineItemEntities = saleTransactionLine
+        this.creditCardEntity = creditCardEntity
     }
 
 

@@ -24,6 +24,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 
 import { ToastModule } from 'primeng/toast';
+import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
 
 
@@ -92,6 +93,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     ConfirmDialogModule,
     ToolbarModule,
     DividerModule,
+    ChartModule,
     RadioButtonModule
 
   ],
