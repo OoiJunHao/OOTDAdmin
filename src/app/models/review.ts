@@ -6,7 +6,6 @@ export class Review {
     rating: string;
     description: string;
     reviewDate: Date;
-
     user: OTUser;
     meal: Meal;
 
