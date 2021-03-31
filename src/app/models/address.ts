@@ -1,6 +1,7 @@
 import { OTUser } from "./ot-user";
 import { Region } from "./region.enum";
 
+
 export class Address {
     addressId: number;
     region: Region;
@@ -13,8 +14,8 @@ export class Address {
 
     constructor(addressId: number,
         region: Region,
-        address: string, 
-        postalCode: string, 
+        address: string,
+        postalCode: string,
         isRemoved: boolean,
         user: OTUser) {
         this.address = address

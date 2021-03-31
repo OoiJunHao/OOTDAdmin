@@ -12,9 +12,7 @@
 
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width: 3rem">
-                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                    </th>
+
                     <th pSortableColumn="userId" p-sortIcon field="userId">User ID</th>
                     <th pSortableColumn="email">Email</th>
                     <th pSortableColumn="contactNum">Contact Number</th>
@@ -25,9 +23,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-user>
                 <tr>
-                    <td>
-                        <p-tableCheckbox [value]="user"></p-tableCheckbox>
-                    </td>
+
                     <td>{{user.userId}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.contactNum}}</td>
@@ -39,3 +35,5 @@
         </p-table>
     </div>
 </section>
+
+<app-footer></app-footer>
