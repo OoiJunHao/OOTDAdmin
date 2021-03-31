@@ -149,8 +149,8 @@ export class MainPageComponent implements OnInit {
 
         });
 
-        this.monthDiff = this.previousMonthRevenue == 0 ? 0 : (1 - (this.currentMonthRevenue / this.previousMonthRevenue)) * 100;
-        this.yearDiff = this.previousYearRevenue == 0 ? 0 : (1 - (this.currentYearRevenue / this.previousYearRevenue)) * 100;
+        this.monthDiff = this.previousMonthRevenue == 0 ? 0 : ((this.currentMonthRevenue / this.previousMonthRevenue) -1) * 100;
+        this.yearDiff = this.previousYearRevenue == 0 ? 0 : ((this.currentYearRevenue / this.previousYearRevenue) -1) * 100;
 
         // populate middle bar + line graph
         this.graphData = {
@@ -235,7 +235,6 @@ export class MainPageComponent implements OnInit {
         console.log('********** MainPageComponent.ts: ' + error);
       }
     );
-
 
   }
 
