@@ -1,4 +1,4 @@
 export enum Promo {
     FLAT,
-    PERCENTAGE;
+    PERCENTAGE
 }

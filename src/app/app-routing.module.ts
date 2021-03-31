@@ -7,7 +7,8 @@ import { IndexComponent } from "./index/index.component";
 import { CreateNewMealComponent } from './create-new-meal/create-new-meal.component'
 import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
-
+import { OTUserComponent } from './otuser/otuser.component';
+import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 
 
 const routes: Routes = [
@@ -18,10 +19,8 @@ const routes: Routes = [
   { path: 'bentoManagement', component: ViewAllMealsComponent },
   { path: 'createNewMeal', component: CreateNewMealComponent },
   { path: 'staffManagement', component: ViewAllStaffComponent },
-
-
-
-
+  { path: 'user-management', component: OTUserComponent },
+  { path: 'reviewManagement', component: ViewAllReviewsComponent }
 ];
 
 @NgModule({
