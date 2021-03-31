@@ -29,8 +29,8 @@ export class ViewAllMealsComponent implements OnInit {
   checked: string;
   submitted: boolean;
   ingredientsError: boolean;
-	categoriesError: boolean;
-	categoriesMessage: string | undefined;
+  categoriesError: boolean;
+  categoriesMessage: string | undefined;
   ingredientsMessage: string | undefined;
   resultError: boolean;
   message: string | undefined;
@@ -39,7 +39,7 @@ export class ViewAllMealsComponent implements OnInit {
   constructor(private mealService: BentoManagementService,
     public sessionService: SessionService, private router: Router,
     private confirmationService: ConfirmationService, private messageService: MessageService) {
-    this.allMeals = new Array();  
+    this.allMeals = new Array();
     this.items = new Array();
     this.mealToView = new Meal();
     this.mealToUpdate = new Meal();
@@ -48,51 +48,53 @@ export class ViewAllMealsComponent implements OnInit {
     this.checked = "";
     this.submitted = false;
     this.ingredientsError = false;
-		this.categoriesError = false;
+    this.categoriesError = false;
     this.resultError = false;
     this.listOfIngredientsObject = new Array();
   }
 
   ngOnInit(): void {
-      //this.checkAccessRight();
+    //this.checkAccessRight();
 
-      this.mealService.getProducts().subscribe(response => {
-        this.allMeals = response;
-      },
+    this.mealService.getProducts().subscribe(response => {
+      this.allMeals = response;
+    },
       error => {
         console.log('************* ViewAllMeals.ts' + error);
       })
 
-      this.items = [
-        {label: 'Update', icon: 'pi pi-refresh', command: () => {
-            this.updateMeal();
-        }},
-        {label: 'Delete', icon: 'pi pi-times', command: () => {
-            this.confirmDelete();
-        }},
-      ]
+    this.items = [
+      {
+        label: 'Update', icon: 'pi pi-refresh', command: () => {
+          this.updateMeal();
+        }
+      },
+      {
+        label: 'Delete', icon: 'pi pi-times', command: () => {
+          this.confirmDelete();
+        }
+      },
+    ]
 
-      this.mealService.retrieveCategories().subscribe(response => {
-        this.listOfCategories = response;
-      }, error => {
-        console.log("********* create new meal: " + error);
-      })
-  
-      this.mealService.retrieveIngredients().subscribe(response => {
-        this.listOfIngredientsObject = response;
-      }, error => {
-        console.log("********* create new meal: " + error);
-      })
-      
+    this.mealService.retrieveCategories().subscribe(response => {
+      this.listOfCategories = response;
+    }, error => {
+      console.log("********* create new meal: " + error);
+    })
+
+    this.mealService.retrieveIngredients().subscribe(response => {
+      this.listOfIngredientsObject = response;
+    }, error => {
+      console.log("********* create new meal: " + error);
+    })
+
   }
 
-  checkAccessRight()
-	{
-		if(!this.sessionService.checkAccessRight(this.router.url))
-		{
-			this.router.navigate(["/accessRightError"]);
-		}
-	}
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
+  }
 
   viewDetails(meal: Meal) {
     console.log(meal.name);
@@ -120,7 +122,7 @@ export class ViewAllMealsComponent implements OnInit {
     this.mealToUpdate = meal;
     this.listOfIngredients = new Array();
     this.mealToUpdate.ingredients?.forEach(element => {
-      this.listOfIngredients.push(element.ingredientId);  
+      this.listOfIngredients.push(element.ingredientId);
     });
     console.log(this.listOfIngredients.length);
   }
@@ -138,15 +140,15 @@ export class ViewAllMealsComponent implements OnInit {
     this.submitted = true;
     if (this.mealToUpdate.categories?.length == 0 || this.listOfIngredients?.length == 0) {
       if (this.mealToUpdate.categories?.length == 0) {
-        this.categoriesError = true;  
+        this.categoriesError = true;
         this.categoriesMessage = "Enter at least one category!";
       } else {
         this.categoriesError = false;
-      }  
-      
+      }
+
       if (this.listOfIngredients?.length == 0) {
-        this.ingredientsError = true;  
-        this.ingredientsMessage = "Enter at least one ingredient!";  
+        this.ingredientsError = true;
+        this.ingredientsMessage = "Enter at least one ingredient!";
       } else {
         this.ingredientsError = false;
       }
@@ -157,7 +159,7 @@ export class ViewAllMealsComponent implements OnInit {
           response => {
             console.log(response);
             this.showUpdateDialog = false;
-            this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId})
+            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId })
             window.location.reload();
           }, error => {
             this.resultError = true;
@@ -181,29 +183,29 @@ export class ViewAllMealsComponent implements OnInit {
 
   confirmDelete() {
     this.confirmationService.confirm({
-        message: 'Do you want to delete this meal?',
-        header: 'Delete Confirmation',
-        icon: 'pi pi-info-circle',
-        accept: () => {
-          this.mealService.deleteMeal(this.mealToUpdate).subscribe(
-            response => {
-              console.log("success");
-              this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId})
-              window.location.reload();
-            }, error => {
-              this.messageService.add({severity: 'error', summary: 'Service Message', detail: error})
-            }
-          )
-        },
-        reject: () => {
-          this.messageService.add({severity: 'info', summary: 'Service Message', detail: 'Delete cancelled'})
-        }
+      message: 'Do you want to delete this meal?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.mealService.deleteMeal(this.mealToUpdate).subscribe(
+          response => {
+            console.log("success");
+            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId })
+            window.location.reload();
+          }, error => {
+            this.messageService.add({ severity: 'error', summary: 'Service Message', detail: error })
+          }
+        )
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'info', summary: 'Service Message', detail: 'Delete cancelled' })
+      }
     });
-}
+  }
 
-clear() {
-  this.mealToUpdate = new Meal();
-}
+  clear() {
+    this.mealToUpdate = new Meal();
+  }
 
 }
 

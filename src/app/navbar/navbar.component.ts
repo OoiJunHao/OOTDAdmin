@@ -67,7 +67,7 @@ export class NavbarComponent implements OnInit {
         items: [
           {
             label: 'Sale Transaction Management',
-            routerLink: '/sale-transaction-management'
+            routerLink: ['/salesTransactionManagement']
           },
           {
             label: 'Report Generation',
