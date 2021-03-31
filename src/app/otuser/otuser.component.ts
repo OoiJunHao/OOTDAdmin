@@ -20,7 +20,7 @@ export class OTUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.OTUserService.getAllUsers().subscribe(response => {this.allUsers = response;console.log(this.allUsers[0].firstName)}, error => {console.log('************* otuser.ts' + error)});
+    this.OTUserService.getAllUsers().subscribe(response => {this.allUsers = response;}, error => {console.log('************* otuser.ts' + error)});
   }
 
   checkAccessRight()
