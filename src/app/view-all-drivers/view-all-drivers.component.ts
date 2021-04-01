@@ -101,7 +101,7 @@ export class ViewAllDriversComponent implements OnInit {
               this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Driver Deleted', life: 3000 });
               this.drivers = this.drivers.filter(val => val.driverId !== this.driverToView.driverId);
               this.ngOnInit();
-              // this.router.navigate(["/staffManagement"]);
+
             },
             error => {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Driver Deletion Fail', life: 3000 });
