@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'user-management', component: OTUserComponent },
   { path: 'reviewManagement', component: ViewAllReviewsComponent },
   { path: 'salesTransactionManagement', component: ViewAllSalesTransactionComponent },
-  { path: "driverManagement", component: ViewAllDriversComponent }
+  { path: 'driverManagement', component: ViewAllDriversComponent }
 ];
 
 @NgModule({

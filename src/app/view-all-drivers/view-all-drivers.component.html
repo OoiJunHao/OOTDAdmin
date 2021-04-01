@@ -1,1 +1,113 @@
-<p>view-all-drivers works!</p>
+<app-navbar></app-navbar>
+
+<section class=content>
+    <p-toast position="top-right"></p-toast>
+    <p-panel header="All Drivers">
+        <p-table [value]="drivers">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Driver ID</th>
+                    <th>Profile Picture</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Username</th>
+                    <th>Active</th>
+                    <th>Action</th>
+
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-driver>
+                <tr>
+                    <td>{{driver.driverId}}</td>
+                    <td>{{driver.profilePicture}}</td>
+                    <td>{{driver.firstname}}</td>
+                    <td>{{driver.lastName}}</td>
+                    <td>{{driver.age}}</td>
+                    <td>{{driver.username}}</td>
+                    <td *ngIf="driver.active" style="color: greenyellow">Active</td>
+                    <td *ngIf="!driver.active" style="color: crimson">Inactive</td>
+                    <td>
+                        <p-splitButton class="actionButton" label="View More" icon="pi pi-eye"
+                            (onDropdownClick)="setUpdateDriver(driver)" (onClick)="viewDetails(driver)" [model]="items">
+                        </p-splitButton>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+
+    <p-dialog header="View Driver Details" [(visible)]="showViewDriverDialog">
+        <div class="dialogcontainer">
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Driver ID: </div>
+                <div class="dialogcolumn">{{driverToView.driverId}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Name: </div>
+                <div class="dialogcolumn">{{driverToView.firstname}} {{driverToView.lastName}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Age: </div>
+                <div class="dialogcolumn">{{driverToView.age}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Username: </div>
+                <div class="dialogcolumn">{{driverToView.username}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Monthly Earning: </div>
+                <div class="dialogcolumn">{{driverToView.monthlyEarnings | currency}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Number of deliveries made: </div>
+                <div class="dialogcolumn">{{driverToView.saleTransaction.length}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Active: </div>
+                <div class="dialogcolumn">
+                    {{driverToView.active}}
+                </div>
+            </div>
+
+        </div>
+    </p-dialog>
+
+    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+    <p-dialog class="dialogs" *ngIf="showUpdateDialog" header="Update Driver Details" [(visible)]="showUpdateDialog">
+        <ng-template pTemplate="content">
+            <div class="p-field">
+                <label for="firstname">First Name</label>
+                <input class="input" type="text" pInputText name="firstname" id="firstname"
+                    [(ngModel)]="driverToUpdate.firstname" required autofocus />
+                <small class="p-error" *ngIf="submitted && !driverToUpdate.firstname">First Name is required</small>
+            </div>
+            <div class="p-field">
+                <label for="lastName">Last Name</label>
+                <input class="input" type="text" pInputText name="lastName" id="lastName"
+                    [(ngModel)]="driverToUpdate.lastName" required autofocus />
+                <small class="p-error" *ngIf="submitted && !driverToUpdate.lastName">Last Name is required</small>
+            </div>
+            <div class="p-field">
+                <label for="lastName">Age</label>
+                <input class="input" type="number" pInputText name="age" id="age" [(ngModel)]="driverToView.age"
+                    required autofocus />
+                <small class="p-error" *ngIf="submitted && !driverToUpdate.age">Age is required</small>
+            </div>
+
+
+        </ng-template>
+
+        <ng-template class="footer" pTemplate="footer">
+            <button class="cancel" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideDialog()"></button>
+            <button pButton pRipple label="Update" icon="pi pi-check" class="p-button-text"
+                (click)="updateDriver()"></button>
+        </ng-template>
+
+    </p-dialog>
+</section>
+
+<app-footer></app-footer>
