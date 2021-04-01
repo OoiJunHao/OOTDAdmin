@@ -77,6 +77,7 @@ export class ViewAllDriversComponent implements OnInit {
       this.driverManagementService.updateDriver(this.driverToUpdate).subscribe(
         response => {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Driver Updated', life: 3000 });
+          this.updateTable();
         },
         error => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Staff Update Fail', life: 3000 });
@@ -84,7 +85,6 @@ export class ViewAllDriversComponent implements OnInit {
         }
       );
 
-      this.ngOnInit();
       this.showUpdateDialog = false;
     }
   }
@@ -100,8 +100,7 @@ export class ViewAllDriversComponent implements OnInit {
             response => {
               this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Driver Deleted', life: 3000 });
               this.drivers = this.drivers.filter(val => val.driverId !== this.driverToView.driverId);
-              this.ngOnInit();
-
+              this.updateTable();
             },
             error => {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Driver Deletion Fail', life: 3000 });
@@ -124,6 +123,19 @@ export class ViewAllDriversComponent implements OnInit {
   hideDialog(): void {
     this.driverToUpdate = this.drivers[0];
     this.showUpdateDialog = false;
+  }
+
+  updateTable(): void {
+    this.driverManagementService.getDrivers().subscribe(
+      response => {
+        this.drivers = response;
+        this.driverToView = this.drivers[0];
+        this.driverToUpdate = this.drivers[0];
+      },
+      error => {
+        console.log('********** ViewAllDriversComponent.ts: ' + error);
+      }
+    );
   }
 
 }
