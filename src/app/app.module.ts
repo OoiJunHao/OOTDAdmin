@@ -45,6 +45,7 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
 import { OTUserComponent } from './otuser/otuser.component';
 import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
+import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/v
     OTUserComponent,
     ViewAllReviewsComponent,
     ViewAllSalesTransactionComponent,
+    ViewAllDriversComponent,
 
   ],
   imports: [

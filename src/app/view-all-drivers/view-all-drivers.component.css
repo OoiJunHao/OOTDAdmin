@@ -1,0 +1,21 @@
+.dialogcontainer {
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+}
+
+.dialogrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.dialogcolumn {
+    margin: 4px
+}
+
+
+.columndescription {
+    font-weight: bold;
+}

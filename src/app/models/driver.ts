@@ -2,7 +2,7 @@ import { SaleTransaction } from "./sale-transaction";
 
 export class Driver {
     driverId: number;
-    firstName: string;
+    firstname: string;
     lastName: string;
     age: number;
     username: string;
@@ -17,7 +17,7 @@ export class Driver {
 
     constructor(
         driverId: number,
-        firstName: string,
+        firstname: string,
         lastName: string,
         age: number,
         username: string,
@@ -29,7 +29,7 @@ export class Driver {
         saleTransaction: SaleTransaction[]
     ) {
         this.driverId = driverId
-        this.firstName = firstName
+        this.firstname = firstname
         this.lastName = lastName
         this.age = age
         this.username = username

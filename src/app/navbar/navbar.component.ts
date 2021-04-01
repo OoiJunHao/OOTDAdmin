@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
           },
           {
             label: "Driver Management",
-            routerLink: '/driver-management'
+            routerLink: ['/driverManagement']
           }
         ]
       },
