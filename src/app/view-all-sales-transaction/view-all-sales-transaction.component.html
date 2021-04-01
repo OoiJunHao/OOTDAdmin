@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+
+<section class="content">
+    <p-panel header="All Sales Transaction"></p-panel>
+    <p-table #dt1 [value]="sales" datakey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" [paginator]="true"
+        [globalFilterFields]="['saleTransactionId','user.firstname', 'user.lastName', 'transactionDate', 'deliveryStatus', 'driver.username', 'address']"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Sale Transaction ID</th>
+                <th>User</th>
+                <th>Total Amount</th>
+                <th>Void / Refund</th>
+                <th>Delivery Status</th>
+                <!-- <th>Promo Code</th>
+                <th>Driver</th> -->
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- <p-columnFilter type="text" field="saleTransactionId" matchMode="contains"></p-columnFilter> -->
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="user.firstname" matchMode="contains"></p-columnFilter>
+                </th>
+
+                <th>
+                    <p-columnFilter type="text" field="totalAmount" matchMode="contains"></p-columnFilter>
+                </th>
+
+                <th>
+                    <p-columnFilter type="boolean" field="voidRefund" matchMode="contains"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="deliveryStatus" matchMode="contains"></p-columnFilter>
+                </th>
+                <!-- <th>
+                    <p-columnFilter type="text" field="promo"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="driver.username"></p-columnFilter>
+                </th> -->
+                <th>
+                    <p-columnFilter type="text" field="address.address" matchMode="contains"></p-columnFilter>
+                </th>
+                <th></th>
+
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-sale>
+            <tr>
+                <td>{{sale.saleTransactionId}}</td>
+                <td>{{sale.user.firstname}} {{sale.user.lastName}}</td>
+                <td>{{sale.totalAmount | currency}}</td>
+                <td *ngIf="sale.voidRefund" style="color: greenyellow;">True</td>
+                <td *ngIf="!sale.voidRefund" style="color: crimson;">False</td>
+                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 1" style="color: greenyellow;">RECEIVED</td>
+                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 2" style="color: orange;">DELIVERING</td>
+                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 3" style="color: red;">COMPLETED</td>
+                <!-- <td>{{sale.promo.promoCodeId}}</td> -->
+                <!-- <td>{{sale.driver.username}}</td> -->
+                <td>{{sale.address.address}}</td>
+                <td>
+                    <button pButton pRipple label="View More" icon="pi pi-eye" (click)="viewDetails(sale)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+    <p-dialog header="View Sales Transaction Details" [(visible)]="showViewDetailsDialog">
+        <div class="dialogcontainer">
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Sales Transaction ID: </div>
+                <div class="dialogcolumn">{{salesToView.saleTransactionId}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">User: </div>
+                <div class="dialogcolumn">{{salesToView.user.firstname}} {{salesToView.user.lastName}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Total Line Items: </div>
+                <div class="dialogcolumn">{{salesToView.totalLineItem}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Total Quantity: </div>
+                <div class="dialogcolumn">{{salesToView.totalQuantity}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Total Amount: </div>
+                <div class="dialogcolumn">{{salesToView.totalAmount | currency}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Delivery: </div>
+                <div class="dialogcolumn">{{salesToView.deliveryDateTime}}</div>
+            </div>
+            <div class="dialogrow">
+                <div class="dialogcolumn columndescription">Address: </div>
+                <div class="dialogcolumn">
+                    {{salesToView.address.address}}
+                </div>
+            </div>
+
+        </div>
+    </p-dialog>
+</section>
+
+<app-footer></app-footer>

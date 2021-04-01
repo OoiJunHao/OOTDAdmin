@@ -24,6 +24,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
 
 import { ToastModule } from 'primeng/toast';
+import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
 
 
@@ -43,6 +44,7 @@ import { ViewAllStaffComponent } from './view-all-staff/view-all-staff.component
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { OTUserComponent } from './otuser/otuser.component';
 import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
+import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     AccessRightErrorComponent,
     OTUserComponent,
     ViewAllReviewsComponent,
+    ViewAllSalesTransactionComponent,
 
   ],
   imports: [
@@ -92,6 +95,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
     ConfirmDialogModule,
     ToolbarModule,
     DividerModule,
+    ChartModule,
     RadioButtonModule
 
   ],
