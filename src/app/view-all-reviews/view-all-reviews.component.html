@@ -3,43 +3,45 @@
 <section class="content">
     <h3>All Reviews</h3>
     <p-table #dt1 [value]="reviews" datakey="id" [rows]="10" [showCurrentPageReport]="true"
-        [rowsPerPageOptions]="[10,25,50]" [paginator]="true" [globalFilterFields]="['rating','user','meal']"
+        [rowsPerPageOptions]="[10,25,50]" [paginator]="true" [globalFilterFields]="['rating','user.firstname', 'user.lastName','meal.name']"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        
 
+        <!-- @bik juen can style these here -->
         <ng-template pTemplate="caption">
-            <!-- <div class="p-d-flex">
-                <span class="p-input-icon-left p-ml-auto">
+            <div class="p-d-flex">
+            
+                <span class="p-input-icon-right p-ml-auto">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
-                        placeholder="Search keyword" />
+                    <!--<input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" /> -->
                 </span>
-            </div> -->
+            </div>
         </ng-template>
 
         <ng-template pTemplate="header">
-            <tr>
+            <tr>    
                 <th pSortableColumn="user">
                     User
-
+                   
                 </th>
                 <th pSortableColumn="meal">
                     Meal
-
+                    
                 </th>
                 <th>Review</th>
                 <th>Description</th>
                 <th pSortableColumn="rating">
                     Rating
-
+                  
                 </th>
-                <th>reviewDate</th>
+                <th>Review Date</th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-review>
             <tr>
-                <td>{{review.user.firstName}} {{review.user.lastName}}</td>
-                <td>{{review.meal.mealId</td>
+                <td>{{review.user.firstname}} {{review.user.lastName}}</td>
+                <td>{{review.meal.name}}</td>
                 <td>{{review.reviewId}}</td>
                 <td>{{review.description}}</td>
                 <td>{{review.rating}}</td>
