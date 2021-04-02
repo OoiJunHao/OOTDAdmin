@@ -2,13 +2,14 @@
     color: #ffaa00;
 }
 .header {
-    height: 10vw;
+    height: 8rem;
     background-color: #262626;
 }
 
 .header-content {
-    padding-left: 3rem;
-    padding-top: 0.5rem;
+    padding-left: 2rem;
+    padding-top: 1rem;
+
     display: flex;
 }
 
@@ -16,6 +17,7 @@
     -webkit-box-flex: 1;
     flex: 1;
     padding-right: 50px;  
+    padding-left: 50px;
 }
 
 .header-right {
@@ -28,4 +30,10 @@
         height: auto;
         /* border-left: 1px solid #efefef; */
     
+}
+
+.company-name {
+    padding-top: 0.5rem; 
+    margin-right: 0.5rem;
+    margin-top: 0px;
 }
