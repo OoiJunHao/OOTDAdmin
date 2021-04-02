@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
           },
           {
             label: "Promo Management",
-            routerLink: '/promo-management'
+            routerLink: ['/promoManagement']
           },
           {
             label: "Review Management",
