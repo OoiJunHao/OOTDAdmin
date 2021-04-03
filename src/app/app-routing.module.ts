@@ -14,6 +14,7 @@ import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/v
 import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
+import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
 
 
 
@@ -28,8 +29,9 @@ const routes: Routes = [
   { path: 'user-management', component: OTUserComponent },
   { path: 'reviewManagement', component: ViewAllReviewsComponent },
   { path: 'salesTransactionManagement', component: ViewAllSalesTransactionComponent },
-  { path: 'promoManagement', component: ViewAllPromoCodeComponent},
-  { path: 'driverManagement', component: ViewAllDriversComponent }
+  { path: 'promoManagement', component: ViewAllPromoCodeComponent },
+  { path: 'driverManagement', component: ViewAllDriversComponent },
+  { path: 'ingredientMangement', component: ViewAllIngredientComponent }
 
 ];
 
