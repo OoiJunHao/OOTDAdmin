@@ -49,6 +49,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
 import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
 import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
+import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
 
 
 
@@ -69,6 +70,7 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     ViewAllSalesTransactionComponent,
     ViewAllPromoCodeComponent,
     ViewAllDriversComponent,
+    ViewAllIngredientComponent,
 
   ],
   imports: [
