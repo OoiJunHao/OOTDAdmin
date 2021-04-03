@@ -1,7 +1,7 @@
 export enum IngredientType {
-    MEAT,
-    VEGE,
-    BASE,
-    ADDON,
-    SAUCE
+    MEAT = "MEAT",
+    VEGE = "VEGE",
+    BASE = "BASE",
+    ADDON = "ADDON",
+    SAUCE = "SAUCE"
 }

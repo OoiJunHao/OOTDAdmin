@@ -22,11 +22,16 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
-
+import {InputSwitchModule} from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
+<<<<<<< HEAD
 import {FileUpload, FileUploadModule} from 'primeng/fileupload';
+=======
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextModule} from 'primeng/inputtext';
+>>>>>>> 8b6673704845a437d2773041ab188aa41ef6b4e4
 
 
 //Componenets
@@ -46,7 +51,10 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
 import { OTUserComponent } from './otuser/otuser.component';
 import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
+import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
+import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
+
 
 
 @NgModule({
@@ -64,7 +72,9 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     OTUserComponent,
     ViewAllReviewsComponent,
     ViewAllSalesTransactionComponent,
+    ViewAllPromoCodeComponent,
     ViewAllDriversComponent,
+    ViewAllIngredientComponent,
 
   ],
   imports: [
@@ -100,7 +110,14 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     DividerModule,
     ChartModule,
     RadioButtonModule,
+<<<<<<< HEAD
     FileUploadModule
+=======
+    InputSwitchModule,
+    CalendarModule,
+    InputTextModule
+
+>>>>>>> 8b6673704845a437d2773041ab188aa41ef6b4e4
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,27 @@
+.headercontent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.headercontent > h2 {
+    color: #fff;
+    margin: 10px
+}
+
+.error {
+    color: red;
+}
+
+.formbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    margin: 10px
+}

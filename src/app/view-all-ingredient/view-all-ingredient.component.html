@@ -1,0 +1,159 @@
+<app-navbar></app-navbar>
+
+<section class=content>
+    <p-toast position="top-right"></p-toast>
+    <p-panel header="All Ingredients">
+        <p-toolbar>
+            <!-- <ng-Template pTemplate="right"> -->
+            <button pButton pRipple label="Create New Ingredient" icon="pi pi-plus" class="p-button-success p-mr-2"
+                (click)="showCreateDialog()"></button>
+            <!-- </ng-Template> -->
+        </p-toolbar>
+        <p-table [value]="ingredients">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Ingredient ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Calorie</th>
+                    <th>Ingredient Type</th>
+                    <th>Update</th>
+                </tr>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-ingred>
+                <tr>
+                    <td>{{ingred.ingredientId}}</td>
+                    <td>{{ingred.name}}</td>
+                    <td>{{ingred.price |currency}} </td>
+                    <td>{{ingred.calorie}}</td>
+                    <td>{{ingred.type}}</td>
+                    <td>
+                        <button pButton pRipple label="Update" icon="pi pi-plus"
+                            (click)="showUpdateDialog(ingred)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </p-panel>
+
+    <p-dialog *ngIf="showCreate" header="Create New Ingredient" [(visible)]="showCreate">
+
+        <ng-template pTemplate="content">
+            <form class=createIngred>
+                <div class="p-field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" pInputText [(ngModel)]="ingredientToCreate.name" required
+                        autofocus>
+                    <small class="p-error" *ngIf="submitted && !ingredientToCreate.name">Name is required</small>
+                </div>
+
+                <div class="p-field">
+                    <label for="price">Price</label>
+                    <input class="input" type="currency" pInputText name="price" id="price"
+                        [(ngModel)]="ingredientToCreate.price" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !ingredientToCreate.price">Price is required</small>
+                </div>
+
+                <div class="p-field">
+                    <label for="calorie">Calorie</label>
+                    <input class="input" type="text" pInputText name="calorie" id="calorie"
+                        [(ngModel)]="ingredientToCreate.calorie" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !ingredientToCreate.calorie">Calorie is required</small>
+                </div>
+
+                <div class="p-field">
+                    <label class="p-mb-3">Type</label>
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field-radiobutton p-col-6">
+                            <p-radioButton id="category1" name="type" value="MEAT" [(ngModel)]="selectedType">
+                            </p-radioButton>
+                            <label for="category1">MEAT</label>
+                            <p-radioButton id="category2" name="type" value="VEGE" [(ngModel)]="selectedType">
+                            </p-radioButton>
+                            <label for="category2">VEGE</label>
+                            <p-radioButton id="category3" name="type" value="BASE" [(ngModel)]="selectedType">
+                            </p-radioButton>
+                            <label for="category3">BASE</label>
+                            <p-radioButton id="category4" name="type" value="ADDON" [(ngModel)]="selectedType">
+                            </p-radioButton>
+                            <label for="category4">ADDON</label>
+                            <p-radioButton id="category5" name="type" value="SAUCE" [(ngModel)]="selectedType">
+                            </p-radioButton>
+                            <label for="category5">SAUCE</label>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="closeDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                (click)="createNewIngredient()"></button>
+        </ng-template>
+
+    </p-dialog>
+
+    <p-dialog class="dialogs" *ngIf="showUpdate" header="Update Ingredient Details" [(visible)]="showUpdate">
+        <ng-template pTemplate="content">
+            <div class="p-field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" pInputText [(ngModel)]="ingredientToView.name" required
+                    autofocus>
+                <small class="p-error" *ngIf="submitted && !ingredientToView.name">Name is required</small>
+            </div>
+            <div class="p-field">
+                <label for="price">Price</label>
+                <input class="input" type="currency" pInputText name="price" id="price"
+                    [(ngModel)]="ingredientToView.price" required autofocus />
+                <small class="p-error" *ngIf="submitted && !ingredientToView.price">Price is required</small>
+            </div>
+
+            <div class="p-field">
+                <label for="calorie">Calorie</label>
+                <input class="input" type="text" pInputText name="calorie" id="calorie"
+                    [(ngModel)]="ingredientToView.calorie" required autofocus />
+                <small class="p-error" *ngIf="submitted && !ingredientToView.calorie">Calorie is required</small>
+            </div>
+
+            <div class="p-field">
+                <label class="p-mb-3">Type</label>
+                <div class="p-formgrid p-grid">
+                    <div class="p-field-radiobutton p-col-6">
+                        <p-radioButton id="category1" name="type" value="MEAT" [(ngModel)]="selectedType">
+                        </p-radioButton>
+                        <label for="category1">MEAT</label>
+                        <p-radioButton id="category2" name="type" value="VEGE" [(ngModel)]="selectedType">
+                        </p-radioButton>
+                        <label for="category2">VEGE</label>
+                        <p-radioButton id="category3" name="type" value="BASE" [(ngModel)]="selectedType">
+                        </p-radioButton>
+                        <label for="category3">BASE</label>
+                        <p-radioButton id="category4" name="type" value="ADDON" [(ngModel)]="selectedType">
+                        </p-radioButton>
+                        <label for="category4">ADDON</label>
+                        <p-radioButton id="category5" name="type" value="SAUCE" [(ngModel)]="selectedType">
+                        </p-radioButton>
+                        <label for="category5">SAUCE</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </ng-template>
+
+        <ng-template class="footer" pTemplate="footer">
+            <button class="cancel" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="closeDialog()"></button>
+            <button pButton pRipple label="Update" icon="pi pi-check" class="p-button-text"
+                (click)="updateIngredient()"></button>
+        </ng-template>
+
+    </p-dialog>
+
+</section>

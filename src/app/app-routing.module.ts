@@ -10,7 +10,12 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
 import { OTUserComponent } from './otuser/otuser.component';
 import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
+
+import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
+
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
+import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
+
 
 
 const routes: Routes = [
@@ -24,7 +29,10 @@ const routes: Routes = [
   { path: 'user-management', component: OTUserComponent },
   { path: 'reviewManagement', component: ViewAllReviewsComponent },
   { path: 'salesTransactionManagement', component: ViewAllSalesTransactionComponent },
-  { path: 'driverManagement', component: ViewAllDriversComponent }
+  { path: 'promoManagement', component: ViewAllPromoCodeComponent },
+  { path: 'driverManagement', component: ViewAllDriversComponent },
+  { path: 'ingredientMangement', component: ViewAllIngredientComponent }
+
 ];
 
 @NgModule({
