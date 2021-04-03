@@ -26,6 +26,7 @@ import { DividerModule } from 'primeng/divider';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {FileUpload, FileUploadModule} from 'primeng/fileupload';
 
 
 //Componenets
@@ -98,8 +99,8 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     ToolbarModule,
     DividerModule,
     ChartModule,
-    RadioButtonModule
-
+    RadioButtonModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

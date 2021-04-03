@@ -10,6 +10,7 @@ import { Ingredient } from '../models/ingredient';
 import { NgForm } from '@angular/forms';
 import { newArray } from '@angular/compiler/src/util';
 
+
 @Component({
   selector: 'app-view-all-meals',
   templateUrl: './view-all-meals.component.html',
@@ -35,6 +36,7 @@ export class ViewAllMealsComponent implements OnInit {
   resultError: boolean;
   message: string | undefined;
 
+  uploadedFiles: File | undefined;
 
   constructor(private mealService: BentoManagementService,
     public sessionService: SessionService, private router: Router,
@@ -58,6 +60,10 @@ export class ViewAllMealsComponent implements OnInit {
 
     this.mealService.getProducts().subscribe(response => {
       this.allMeals = response;
+      /*  this.allMeals.forEach((value) => {
+          value.image = "http://localhost:8080/OTFood-war/uploadedFiles/" + value.image + ".jpg";
+        })*/
+
     },
       error => {
         console.log('************* ViewAllMeals.ts' + error);
@@ -159,8 +165,8 @@ export class ViewAllMealsComponent implements OnInit {
           response => {
             console.log(response);
             this.showUpdateDialog = false;
-            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId })
             window.location.reload();
+            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'New Meal Updated: ID ' + this.mealToUpdate.mealId })
           }, error => {
             this.resultError = true;
             this.message = "An error has occurred while creating the new product: " + error;
@@ -190,8 +196,8 @@ export class ViewAllMealsComponent implements OnInit {
         this.mealService.deleteMeal(this.mealToUpdate).subscribe(
           response => {
             console.log("success");
-            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId })
             window.location.reload();
+            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId })          
           }, error => {
             this.messageService.add({ severity: 'error', summary: 'Service Message', detail: error })
           }
@@ -207,6 +213,8 @@ export class ViewAllMealsComponent implements OnInit {
     this.mealToUpdate = new Meal();
   }
 
+  onUpload() { 
+    window.location.reload();
+    this.messageService.add({severity: 'success', summary: 'Image Uploaded', detail: ''});   
+  }
 }
-
-
