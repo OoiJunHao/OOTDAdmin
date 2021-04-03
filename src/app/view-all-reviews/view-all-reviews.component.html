@@ -13,7 +13,9 @@
             
                 <span class="p-input-icon-right p-ml-auto">
                     <i class="pi pi-search"></i>
+
                     <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+
                 </span>
             </div>
         </ng-template>
