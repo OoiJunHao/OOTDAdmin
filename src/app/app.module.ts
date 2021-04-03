@@ -26,12 +26,9 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
-<<<<<<< HEAD
 import {FileUpload, FileUploadModule} from 'primeng/fileupload';
-=======
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextModule} from 'primeng/inputtext';
->>>>>>> 8b6673704845a437d2773041ab188aa41ef6b4e4
 
 
 //Componenets
@@ -110,14 +107,11 @@ import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingre
     DividerModule,
     ChartModule,
     RadioButtonModule,
-<<<<<<< HEAD
-    FileUploadModule
-=======
+    FileUploadModule,
     InputSwitchModule,
     CalendarModule,
     InputTextModule
 
->>>>>>> 8b6673704845a437d2773041ab188aa41ef6b4e4
   ],
   providers: [],
   bootstrap: [AppComponent]
