@@ -1,0 +1,103 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="headercontent">
+        <h2>All Promo Codes</h2>
+        <p-button type="button" (onClick)="displayCreateDialog()">Add Promo Code</p-button>
+    </div>
+    <div class="tablecontent">
+        <p-table [value]="promoCodes">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Promo Code Id</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Discount Code</th>
+                    <th>Discount Rate</th>
+                    <th>Promo Type</th>
+                    <th>Usage Count</th>
+                    <th>Available</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-code>
+                <tr>
+                    <td>{{code.promoCodeId}}</td>
+                    <td>{{code.startDate}}</td>
+                    <td>{{code.endDate}}</td>
+                    <td>{{code.discountCode}}</td>
+                    <td>{{code.discountRate}}</td>
+                    <td>{{code.discountCodeTypeEnum}}</td>
+                    <td>{{code.saleTransaction.length}}</td>
+                    <td><p-inputSwitch [(ngModel)]= "code.isAvailable" (onChange)="updateCode(code)"></p-inputSwitch></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <p-dialog header="Create Promo Code" [(visible)] = "createDisplay" [contentStyle]="{'overflow': 'visible'}">
+        <div *ngIf="resultError == true" style="color:red;">
+            {{message}}
+        </div>
+        <form class="createPromoForm" #createPromoForm="ngForm" (ngSubmit)="createPromo(createPromoForm)">
+            <div class="p-field p-grid contentBoxes">
+                <label for="startDate" class="p-col-fixed" style = "width: 100px;">Start Date: </label>
+                <div>
+                    <p-calendar [(ngModel)]="promoCodeToCreate.startDate" name="startDate" dateFormat="yy.mm.dd"[showTime]="true" [required]="true" inputId="startDate" ></p-calendar>    
+                </div>
+                <div *ngIf="startError == true" style="color:red;">
+                    Select a start date!
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="endDate" class="p-col-fixed" style = "width: 100px;">End Date: </label>
+                <div>
+                    <p-calendar [(ngModel)]="promoCodeToCreate.endDate" name="endDate" dateFormat="yy.mm.dd"[showTime]="true" [required]="true" inputId="endDate"></p-calendar>    
+                </div>
+                <div *ngIf="endError == true" style="color:red;">
+                    Select a end date!
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="discountcode" class="p-col-fixed" style = "width: 100px;">discount Code: </label>
+                <div>
+                    <input type="text" id="discountcode" [(ngModel)]="promoCodeToCreate.discountCode" #discountcode="ngModel" name="discountcode" pInputText style="width: 450px" required="true">
+                </div>
+                <div *ngIf="discountcode.invalid && (discountcode.dirty || discountcode.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="discountcode.errors != null && discountcode.errors.required">
+                        Discount Code is required.
+                    </div>
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="discountrate" class="p-col-fixed" style = "width: 100px;">discount Rate: </label>
+                <div>
+                    <input type="number" min="1" id="discountrate" [(ngModel)]="promoCodeToCreate.discountRate" #discountrate="ngModel" name="discountrate" pInputText style="width: 450px" required="true">
+                </div>
+                <div *ngIf="discountrate.invalid && (discountrate.dirty || discountrate.touched || submitted)" class="errorText">
+                    <div class="error" *ngIf="discountrate.errors != null && discountrate.errors.required">
+                        Discount Rate is required.
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="p-field p-grid contentBoxes">
+                <label for="discounttype" class="p-col-fixed" style = "width: 100px;">discount Type: </label>
+                <div>
+                    <p-radioButton name="type" value="PERCENTAGE" [(ngModel)]="promoCodeToCreate.discountCodeTypeEnum" inputId="p"></p-radioButton>
+                    <label for="p">Percentage</label>
+                    <p-radioButton name="type" value="FLAT" [(ngModel)]="promoCodeToCreate.discountCodeTypeEnum" inputId="f"></p-radioButton>
+                    <label for="f">flat rate</label>
+                </div>
+                <div *ngIf="availableError == true" style="color:red;">
+                    Select a discount type!
+                </div>
+            </div>
+            <br/>
+            <div class="formbuttons">
+                <p-button class="button" (click)="clear()"> Clear </p-button>
+                <p-button class="button" type="submit"> Submit </p-button>
+            </div>
+        </form>
+    </p-dialog>
+</div>
+
+

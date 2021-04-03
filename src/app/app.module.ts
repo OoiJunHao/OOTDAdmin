@@ -22,10 +22,12 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
-
+import {InputSwitchModule} from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 //Componenets
@@ -45,7 +47,9 @@ import { AccessRightErrorComponent } from './access-right-error/access-right-err
 import { OTUserComponent } from './otuser/otuser.component';
 import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.component';
 import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
+import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
+
 
 
 @NgModule({
@@ -63,6 +67,7 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     OTUserComponent,
     ViewAllReviewsComponent,
     ViewAllSalesTransactionComponent,
+    ViewAllPromoCodeComponent,
     ViewAllDriversComponent,
 
   ],
@@ -98,7 +103,10 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     ToolbarModule,
     DividerModule,
     ChartModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputSwitchModule,
+    CalendarModule,
+    InputTextModule
 
   ],
   providers: [],
