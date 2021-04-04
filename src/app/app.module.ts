@@ -26,6 +26,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {FileUpload, FileUploadModule} from 'primeng/fileupload';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextModule} from 'primeng/inputtext';
 
@@ -106,6 +107,7 @@ import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingre
     DividerModule,
     ChartModule,
     RadioButtonModule,
+    FileUploadModule,
     InputSwitchModule,
     CalendarModule,
     InputTextModule

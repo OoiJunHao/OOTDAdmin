@@ -52,17 +52,21 @@
 			</div>
         </div>
         <div class="p-field p-grid contentBoxes">
-            <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
-            <div class="p-col">
+            <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>       
+            <br/>
+            <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + mealToCreate.image + '.jpg'}}" width="150rem" height="150rem"/>    
+            <br/>       
+            <p-fileUpload #fubauto  mode="basic" style="display:inline-block;" name="image"  url="{{'http://localhost:8080/OTFoodRws/Resources/Bento/uploadImage/?name=' + mealToCreate.image}}" accept="image/*"  [auto]="true" chooseLabel="Choose Image"  (onUpload)="onUpload()"></p-fileUpload>    
+            <p-button (click)="refreshImage()" style="float: right;">Refresh Uploaded Image</p-button>
+            <!--     <div class="p-col">
                 <input id="" type="text" name="image" #image="ngModel" [(ngModel)]="mealToCreate.image" pInputText style="width: 450px" required="true">
             </div>
             <div *ngIf="image.invalid && (image.dirty || image.touched || submitted)" class="errorText">
                 <div class="error" *ngIf="image.errors != null && image.errors.required">
                     Image is required.
                 </div>
-			</div>
-        </div>
-        
+			</div> -->
+        </div>   
         <div class="checkboxcontents">
             <div class="content">
                 <label for="allcategories">Categories (Choose 1 or more):</label>
