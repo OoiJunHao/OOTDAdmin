@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FilterService } from 'primeng/api';
+import { SelectItem, FilterService, FilterMatchMode } from 'primeng/api';
 import { Delivery } from '../models/delivery.enum';
 import { PromoCode } from '../models/promo-code';
 import { SaleTransaction } from '../models/sale-transaction';
-import { SalesTransactionService } from '../services/sales-transaction.service';
+import { SaleTransactionManagementService } from '../services/sale-transaction-management.service';
 import { SessionService } from '../services/session.service';
 
 @Component({
@@ -18,14 +18,16 @@ export class ViewAllSalesTransactionComponent implements OnInit {
   salesToView: any;
 
   showViewDetailsDialog: boolean = false;
+  matchModeOptions: SelectItem[];
 
-  constructor(private saleTransactionService: SalesTransactionService, private sessionService: SessionService, private router: Router, private filterService: FilterService) {
+  constructor(private saleTransactionService: SaleTransactionManagementService, private sessionService: SessionService, private router: Router, private filterService: FilterService) {
     this.sales = new Array();
+    this.matchModeOptions = [ { label: 'Contains', value: FilterMatchMode.CONTAINS }];
     // this.salesToView = this.sales[0];
   }
 
   ngOnInit(): void {
-    this.saleTransactionService.getSalesTransaction().subscribe(
+    this.saleTransactionService.getAllSaleTransactions().subscribe(
       response => {
         this.sales = response;
         this.salesToView = this.sales[0];

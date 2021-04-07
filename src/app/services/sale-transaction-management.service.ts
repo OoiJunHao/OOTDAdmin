@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { SaleTransaction } from '../models/sale-transaction';
+import { ReportReq } from '../models/report-req';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,6 +23,15 @@ export class SaleTransactionManagementService {
   getAllSaleTransactions(): Observable<SaleTransaction[]> {
     console.log(this.sessionService.getUsername());
     return this.httpClient.get<SaleTransaction[]>(this.baseUrl + "/retrieveAllSaleTransactions" + "/?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+      (
+        catchError(this.handleError)
+      )
+  }
+
+  generateReport(start: Date, end: Date): Observable<any> {
+    let  req: ReportReq = new ReportReq(start, end);
+    console.log(this.sessionService.getUsername);
+    return this.httpClient.post<any>(this.baseUrl + "/generateReport", req, httpOptions).pipe
       (
         catchError(this.handleError)
       )

@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
           },
           {
             label: 'Report Generation',
-            routerLink: '/report-generation'
+            routerLink: ['/report-generation']
           }
         ]
       }
