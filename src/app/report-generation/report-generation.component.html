@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+
+<p-toast></p-toast>
+
+<div style="padding:1rem">
+    <h3 style="color:aliceblue">Sales Report Generation</h3>
+    <h5 style="color:aliceblue"><i>Select the desired months for the report below</i></h5>
+    <div class="p-field p-col-12 p-md-4">
+        <label for="monthpicker" style="color:aliceblue">Starting Month (inclusive): </label>
+        <p-calendar [(ngModel)]="start" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030"
+            [readonlyInput]="true" inputId="monthpicker"></p-calendar>
+    </div>
+    <div class="p-field p-col-12 p-md-4" style="margin-top: 1rem; margin-bottom: 1rem; color:aliceblue">
+        <label for="monthpicker2">Ending Month (exclusive): </label>
+        <p-calendar [(ngModel)]="end" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030"
+            [readonlyInput]="true" inputId="monthpicker2"></p-calendar>
+    </div>
+
+    <p-button icon="pi pi-file-pdf" (click)="generateReport()" type="button" label="Generate Report"></p-button>
+
+</div>
+
+
+<app-footer></app-footer>

@@ -51,6 +51,7 @@ import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/v
 import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
 import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
+import { ReportGenerationComponent } from './report-generation/report-generation.component';
 
 
 
@@ -72,6 +73,7 @@ import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingre
     ViewAllPromoCodeComponent,
     ViewAllDriversComponent,
     ViewAllIngredientComponent,
+    ReportGenerationComponent,
 
   ],
   imports: [
