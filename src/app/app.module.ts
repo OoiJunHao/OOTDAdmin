@@ -26,6 +26,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {FileUpload, FileUploadModule} from 'primeng/fileupload';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextModule} from 'primeng/inputtext';
 
@@ -49,6 +50,7 @@ import { ViewAllReviewsComponent } from './view-all-reviews/view-all-reviews.com
 import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/view-all-sales-transaction.component';
 import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
+import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
 
 
 
@@ -69,6 +71,7 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     ViewAllSalesTransactionComponent,
     ViewAllPromoCodeComponent,
     ViewAllDriversComponent,
+    ViewAllIngredientComponent,
 
   ],
   imports: [
@@ -104,6 +107,7 @@ import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.com
     DividerModule,
     ChartModule,
     RadioButtonModule,
+    FileUploadModule,
     InputSwitchModule,
     CalendarModule,
     InputTextModule

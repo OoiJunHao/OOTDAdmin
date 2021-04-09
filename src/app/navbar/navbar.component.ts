@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
           },
           {
             label: 'Ingredient Management',
-            routerLink: '/ingredient-management'
+            routerLink: ['/ingredientMangement']
           },
           {
             label: "Promo Management",

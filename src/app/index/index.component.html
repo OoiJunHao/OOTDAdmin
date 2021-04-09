@@ -8,18 +8,22 @@
 
                 <div class="p-grid p-jc-center">
                     <div class="p-col-4">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                            <input type="username" pInputText name="username" #username="ngModel"
-                                [(ngModel)]="model.username" placeholder="Username">
+                        <div class="signin">
+                            <div class="input">
+                                <span><i class="pi pi-user"></i></span>
+                                <input class="textbox" type="username" pInputText name="username" #username="ngModel"
+                                    [(ngModel)]="model.username" placeholder="Username">
+                            </div>
                         </div>
                     </div>
 
                     <div class="p-col-4">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon"><i class="pi pi-shield"></i></span>
-                            <input type="password" pInputText name="password" #password="ngModel"
-                                [(ngModel)]="model.password" placeholder="Password">
+                        <div class="signin">
+                            <div class="input">
+                                <span><i class="pi pi-shield"></i></span>
+                                <input class="textbox" type="password" pInputText name="password" #password="ngModel"
+                                    [(ngModel)]="model.password" placeholder="Password">
+                            </div>
                         </div>
                     </div>
 
@@ -34,9 +38,9 @@
         </div>
     </form>
 </section>
-<br/>
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
+<br />
 
 <app-footer></app-footer>

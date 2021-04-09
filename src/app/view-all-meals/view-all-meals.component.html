@@ -12,15 +12,15 @@
             <p-table [value]="allMeals">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>mealId</th>
-                        <th>price</th>
-                        <th>description</th>
-                        <th>calorie</th>
-                        <th>average rating</th>
-                        <th>name</th>
-                        <th>image</th>
+                        <th>Meal ID</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Calorie</th>
+                        <th>Average Rating</th>
+                        <th>Name</th>
+                        <th>Image</th>
                         <th>Available</th>
-                        <th>Actions</th>
+                        <th>AIFormDataContentDisposition fileDetailctions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-meal>
@@ -31,7 +31,7 @@
                         <td>{{meal.calorie}}</td>
                         <td>{{meal.averageRating}}</td>
                         <td>{{meal.name}}</td>
-                        <td>{{meal.image}}</td>
+                        <td><img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + meal.image + '.jpg'}}" width="100rem" height="100rem"/></td>
                         <td *ngIf="meal.isAvailable" style="color: greenyellow">True</td>
                         <td *ngIf="!meal.isAvailable" style="color: crimson">False</td>
                         <td>
@@ -150,15 +150,18 @@
             <div class="p-field p-grid contentBoxes">
                 <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
                 <div class="p-col">
-                    <input id="" type="text" name="image" #image="ngModel" [(ngModel)]="mealToUpdate.image" pInputText style="width: 450px" required="true">
+                    <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + mealToUpdate.image + '.jpg'}}" width="150rem" height="150rem"/>
+                    <br/>
+                    <p-fileUpload #fubauto mode="basic" name="image"  url="{{'http://localhost:8080/OTFoodRws/Resources/Bento/uploadImage/?name=' + mealToUpdate.image}}" accept="image/*"  [auto]="true" chooseLabel="Choose Image"  (onUpload)="onUpload()"></p-fileUpload>
+                    <!-- <input id="" type="text" name="image" #image="ngModel" [(ngModel)]="mealToUpdate.image" pInputText style="width: 450px" required="true"> -->
+                 
                 </div>
-                <div *ngIf="image.invalid && (image.dirty || image.touched || submitted)" class="errorText">
+              <!--   <div *ngIf="image.invalid && (image.dirty || image.touched || submitted)" class="errorText">
                     <div class="error" *ngIf="image.errors != null && image.errors.required">
                         Image is required.
                     </div>
-                </div>
-            </div>
-            
+                </div> -->
+            </div>     
             <div class="checkboxcontents">
                 <div class="content">
                     <label for="allcategories">Categories (Choose 1 or more):</label>

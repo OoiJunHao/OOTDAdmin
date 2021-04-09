@@ -87,6 +87,7 @@ export class ViewAllStaffComponent implements OnInit {
     }
 
     if (this.staff != null) {
+      console.log(this.staff);
       this.staffManagementService.createNewStaff(this.staff).subscribe(
         res => {
           let newStaffId: number = res;
@@ -108,7 +109,7 @@ export class ViewAllStaffComponent implements OnInit {
         }
       );
     }
-
+    this.showCreate = false;
   }
 
   deleteStaff(): void {
