@@ -31,9 +31,9 @@
                         <td>{{meal.calorie}}</td>
                         <td>{{meal.averageRating}}</td>
                         <td>{{meal.name}}</td>
-                        <td><img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + meal.image + '.jpg'}}" style="max-width: 70%; max-height: 70%;"/></td>
-                        <td *ngIf="meal.isAvailable" style="color: greenyellow">True</td>
-                        <td *ngIf="!meal.isAvailable" style="color: crimson">False</td>
+                        <td><img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + meal.image + '.jpg'}}" style="max-width: 70%; max-height: 70%;" alt="No Image"/></td>
+                        <td *ngIf="meal.isAvailable" style="color: greenyellow"> True &nbsp;<p-inputSwitch [(ngModel)]="meal.isAvailable" (onChange)="updateAvail(meal)"></p-inputSwitch></td>
+                        <td *ngIf="!meal.isAvailable" style="color: crimson">False &nbsp;<p-inputSwitch [(ngModel)]="meal.isAvailable" (onChange)="updateAvail(meal)"></p-inputSwitch></td>
                         <td>
                             <p-splitButton class="actionButton" label="View More" icon="pi pi-eye" (onDropdownClick)="setUpdateMeal(meal)" (onClick)="viewDetails(meal)" [model]="items"></p-splitButton>
                         </td>
@@ -128,7 +128,8 @@
             <div class="p-field p-grid contentBoxes">
                 <label for="price" class="p-col-fixed" style = "width: 100px;">Price: </label>
                 <div class="p-col">
-                    <input id="price" type="text" name="price" pInputText #price="ngModel" [(ngModel)]="mealToUpdate.price" style="width: 450px" required="true">
+                    <input pInputText type="number" min="0.00" max="10000.00" step="0.01" name="price" id="price"
+                    [(ngModel)]="mealToUpdate.price" #price="ngModel" required style="width: 450px"/>
                 </div>
                 <div *ngIf="price.invalid && (price.dirty || price.touched || submitted)" class="errorText">
                     <div class="error" *ngIf="price.errors != null && price.errors.required">
@@ -139,7 +140,8 @@
             <div class="p-field p-grid contentBoxes">
                 <label for="calorie" class="p-col-fixed" style = "width: 100px;">Calorie: </label>
                 <div class="p-col">
-                    <input id="calorie" type="text" name="calorie" #calorie="ngModel" [(ngModel)]="mealToUpdate.calorie" pInputText style="width: 450px" required="true">
+                    <input pInputText class="input" type="number" min="0.00" max="10000.00" step="1" name="calorie"
+                    id="calorie" #calorie="ngModel" [(ngModel)]="mealToUpdate.calorie" required style="width: 450px"/>
                 </div>
                 <div *ngIf="calorie.invalid && (calorie.dirty || calorie.touched || submitted)" class="errorText">
                     <div class="error" *ngIf="calorie.errors != null && calorie.errors.required">
@@ -150,7 +152,7 @@
             <div class="p-field p-grid contentBoxes">
                 <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>
                 <div class="p-col">
-                    <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + mealToUpdate.image + '.jpg'}}" width="150rem" height="150rem"/>
+                    <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + mealToUpdate.image + '.jpg'}}" width="250rem" height="150rem"/>
                     <br/>
                     <p-fileUpload #fubauto mode="basic" name="image"  url="{{'http://localhost:8080/OTFoodRws/Resources/Bento/uploadImage/?name=' + mealToUpdate.image}}" accept="image/*"  [auto]="true" chooseLabel="Choose Image"  (onUpload)="onUpload()"></p-fileUpload>
                     <!-- <input id="" type="text" name="image" #image="ngModel" [(ngModel)]="mealToUpdate.image" pInputText style="width: 450px" required="true"> -->
@@ -163,6 +165,7 @@
                 </div> -->
             </div>     
             <div class="checkboxcontents">
+                <br/>
                 <div class="content">
                     <label for="allcategories">Categories (Choose 1 or more):</label>
                     <div class="allcategories"*ngFor="let category of listOfCategories" class="p-field-checkbox">
@@ -173,6 +176,7 @@
                         {{categoriesMessage}}
                     </div>
                 </div>
+                <br/>
                 <div class="content">
                     <label for="allingredients">Ingredients (Choose 1 or more):</label>
                     <div class="allingredients"*ngFor="let ingredient of listOfIngredientsObject" class="p-field-checkbox">

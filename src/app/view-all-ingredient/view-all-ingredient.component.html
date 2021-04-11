@@ -46,7 +46,7 @@
 
     </p-panel>
 
-    <p-dialog *ngIf="uploadImage" [modal]="true" [(visible)]="uploadImage">
+    <p-dialog *ngIf="uploadImage" [modal]="true" [(visible)]="uploadImage" header="Upload/Change Image">
     
             <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/ingredients/' + ingredientToView.name + '.jpg'}}"
                 width="800vh" height="500vh" alt="No Image Uploaded">

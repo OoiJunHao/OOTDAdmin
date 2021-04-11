@@ -32,7 +32,8 @@
         <div class="p-field p-grid contentBoxes">
             <label for="price" class="p-col-fixed" style = "width: 100px;">Price: </label>
             <div class="p-col">
-                <input id="price" type="text" name="price" pInputText #price="ngModel" [(ngModel)]="mealToCreate.price" style="width: 450px" required="true">
+                <input pInputText type="number" min="0.00" max="10000.00" step="0.01" name="price" id="price"
+                            [(ngModel)]="mealToCreate.price" #price="ngModel" required style="width: 450px"/>
             </div>
             <div *ngIf="price.invalid && (price.dirty || price.touched || submitted)" class="errorText">
                 <div class="error" *ngIf="price.errors != null && price.errors.required">
@@ -43,7 +44,8 @@
         <div class="p-field p-grid contentBoxes">
             <label for="calorie" class="p-col-fixed" style = "width: 100px;">Calorie: </label>
             <div class="p-col">
-                <input id="calorie" type="text" name="calorie" #calorie="ngModel" [(ngModel)]="mealToCreate.calorie" pInputText style="width: 450px" required="true">
+                <input pInputText class="input" type="number" min="0.00" max="10000.00" step="1" name="calorie"
+                id="calorie" #calorie="ngModel" [(ngModel)]="mealToCreate.calorie" required style="width: 450px"/>
             </div>
             <div *ngIf="calorie.invalid && (calorie.dirty || calorie.touched || submitted)" class="errorText">
                 <div class="error" *ngIf="calorie.errors != null && calorie.errors.required">
@@ -54,8 +56,9 @@
         <div class="p-field p-grid contentBoxes">
             <label for="image" class="p-col-fixed" style = "width: 100px;">Image: </label>       
             <br/>
-            <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + mealToCreate.image + '.jpg'}}" width="150rem" height="150rem"/>    
-            <br/>       
+            <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + mealToCreate.image + '.jpg'}}" width="150rem" height="150rem" />  
+            <figcaption style="color:grey"><i>Please upload an image and click on refresh image</i></figcaption>  
+            
             <p-fileUpload #fubauto  mode="basic" style="display:inline-block;" name="image"  url="{{'http://localhost:8080/OTFoodRws/Resources/Bento/uploadImage/?name=' + mealToCreate.image}}" accept="image/*"  [auto]="true" chooseLabel="Choose Image"  (onUpload)="onUpload()"></p-fileUpload>    
             <p-button (click)="refreshImage()" style="float: right;">Refresh Uploaded Image</p-button>
             <!--     <div class="p-col">

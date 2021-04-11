@@ -137,6 +137,17 @@ export class ViewAllMealsComponent implements OnInit {
     console.log(this.mealToUpdate.isAvailable);
   }
 
+  updateAvail(meal: Meal) {
+    this.mealService.updateMeal(meal).subscribe(
+      response => {
+        this.messageService.add({ severity: 'success', summary: 'Availability Updated', detail: '' })
+      }, error => {
+        this.resultError = true;
+        this.message = "An error has occurred while trying to update availability" + error;
+      }
+    )
+  }
+
   updateSubmit(updateMealForm: NgForm) {
     if (this.checked == "true") {
       this.mealToUpdate.isAvailable = true;
