@@ -228,4 +228,9 @@ export class ViewAllMealsComponent implements OnInit {
     window.location.reload();
     this.messageService.add({severity: 'success', summary: 'Image Uploaded', detail: ''});   
   }
+
+  closeDialog() {
+    this.showUpdateDialog = false;
+    this.ngOnInit();
+  }
 }

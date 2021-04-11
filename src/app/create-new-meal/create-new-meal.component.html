@@ -2,7 +2,7 @@
     <p-button type="button" icon="pi pi-plus" label="Add Meal" (click)="showDialog()"></p-button>
 </div>
 <p-toast></p-toast>
-<p-dialog header="Create new Bento" [(visible)] = "display">
+<p-dialog header="Create new Bento" [(visible)] = "display"  [modal] = "true">
     <div *ngIf="resultError == true" style="color:red;">
         {{message}}
     </div>
