@@ -70,7 +70,7 @@ export class MainPageComponent implements OnInit {
     // populate dateDict
     var currentDate = new Date();
     console.log('Current date: ' + currentDate.toUTCString());
-    var thisMonth = currentDate.getMonth();
+    var thisMonth = currentDate.getMonth() == 0 ? 11 : currentDate.getMonth() -1;
     var thisYear = currentDate.getFullYear();
     for (let i = 0; i < 12; ++i) {
       this.dateDict[i] = (String(thisMonth).length == 2 ? String(thisMonth) : '0' + String(thisMonth)) + String(thisYear);
@@ -93,15 +93,15 @@ export class MainPageComponent implements OnInit {
           // Calculate Revenue
           var currentDate = new Date();
           console.log('Current date: ' + currentDate.toUTCString());
-          var currentMonth = currentDate.getMonth() + 1;
+          var currentMonth = currentDate.getMonth();
           console.log('Current Month:' + currentMonth);
           var currentYear = currentDate.getFullYear();
           console.log('Current Year:' + currentYear);
           // dunno why the saleTransaction date time is reflected as string in chrome, thus comparing using substring
           var transactionMonth = Number(value.transactionDateTime.toString().substring(5, 7));
-          console.log('T Month:' + transactionMonth);
+          //console.log('T Month:' + transactionMonth);
           var transactionYear = Number(value.transactionDateTime.toString().substring(0, 4));
-          console.log('T Year:' + transactionYear);
+          //console.log('T Year:' + transactionYear);
           if (transactionYear == currentYear) {
             this.currentYearRevenue += value.totalAmount;
             if (transactionMonth == currentMonth) {
@@ -122,7 +122,7 @@ export class MainPageComponent implements OnInit {
             if (toCheck === this.dateDict[i]) {
               var month = deliveryMonth - 1;
               this.monthlyMealSales[month] += 1;
-              console.log(value.transactionDateTime);
+              //console.log(value.transactionDateTime);
               var deliveryHour = Number(value.deliveryDateTime.toString().substring(11, 13)); // this is in UTC so yeh HAHA
               if (deliveryHour < 8 || deliveryHour >= 20) {
                 this.monthlyNightMealSales[month] += 1;

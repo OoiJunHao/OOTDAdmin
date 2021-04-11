@@ -58,9 +58,9 @@
                 <td>{{sale.totalAmount | currency}}</td>
                 <td *ngIf="sale.voidRefund" style="color: greenyellow;">True</td>
                 <td *ngIf="!sale.voidRefund" style="color: crimson;">False</td>
-                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 1" style="color: greenyellow;">RECEIVED</td>
+                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 1" style="color: green;">RECEIVED</td>
                 <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 2" style="color: orange;">DELIVERING</td>
-                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 3" style="color: red;">COMPLETED</td>
+                <td *ngIf="checkDeliveryStatus(sale.deliveryStatus) == 3" style="color: greenyellow;">COMPLETED</td>
                 <!-- <td>{{sale.promo.promoCodeId}}</td> -->
                 <!-- <td>{{sale.driver.username}}</td> -->
                 <td>{{sale.address.address}}</td>

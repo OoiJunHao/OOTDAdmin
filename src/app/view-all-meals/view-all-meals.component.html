@@ -20,7 +20,7 @@
                         <th>Name</th>
                         <th>Image</th>
                         <th>Available</th>
-                        <th>AIFormDataContentDisposition fileDetailctions</th>
+                        <th>Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-meal>
@@ -31,7 +31,7 @@
                         <td>{{meal.calorie}}</td>
                         <td>{{meal.averageRating}}</td>
                         <td>{{meal.name}}</td>
-                        <td><img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + meal.image + '.jpg'}}" width="100rem" height="100rem"/></td>
+                        <td><img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/bentos/' + meal.image + '.jpg'}}" style="max-width: 70%; max-height: 70%;"/></td>
                         <td *ngIf="meal.isAvailable" style="color: greenyellow">True</td>
                         <td *ngIf="!meal.isAvailable" style="color: crimson">False</td>
                         <td>
