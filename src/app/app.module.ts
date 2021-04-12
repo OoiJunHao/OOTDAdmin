@@ -22,14 +22,14 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
-import {InputSwitchModule} from 'primeng/inputswitch';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {FileUpload, FileUploadModule} from 'primeng/fileupload';
-import {CalendarModule} from 'primeng/calendar';
-import {InputTextModule} from 'primeng/inputtext';
-
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FileUpload, FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -112,8 +112,8 @@ import { ReportGenerationComponent } from './report-generation/report-generation
     FileUploadModule,
     InputSwitchModule,
     CalendarModule,
-    InputTextModule
-
+    InputTextModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
