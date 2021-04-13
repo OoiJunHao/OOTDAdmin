@@ -9,6 +9,8 @@ import { Category } from '../models/category.enum';
 import { Ingredient } from '../models/ingredient';
 import { NgForm } from '@angular/forms';
 import { newArray } from '@angular/compiler/src/util';
+import { EnumModel } from '../models/enumModel';
+import { element } from 'protractor';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class ViewAllMealsComponent implements OnInit {
   mealToView: Meal;
   mealToUpdate: Meal;
   listOfCategories: Category[];
+  listOfCategoriesEnum: EnumModel[]
   listOfIngredients: number[];
   listOfIngredientsObject: Ingredient[]
   checked: string;
@@ -35,7 +38,7 @@ export class ViewAllMealsComponent implements OnInit {
   ingredientsMessage: string | undefined;
   resultError: boolean;
   message: string | undefined;
-
+  selectedCategories: EnumModel[];
   uploadedFiles: File | undefined;
 
   constructor(private mealService: BentoManagementService,
@@ -53,9 +56,12 @@ export class ViewAllMealsComponent implements OnInit {
     this.categoriesError = false;
     this.resultError = false;
     this.listOfIngredientsObject = new Array();
+    this.selectedCategories = new Array();
+    this.listOfCategoriesEnum = new Array();
   }
 
   ngOnInit(): void {
+    
     //this.checkAccessRight();
 
     this.mealService.getProducts().subscribe(response => {
@@ -84,15 +90,35 @@ export class ViewAllMealsComponent implements OnInit {
 
     this.mealService.retrieveCategories().subscribe(response => {
       this.listOfCategories = response;
+      let i: any;
+      for (i = 0; i < this.listOfCategories.length; i++) {
+        this.listOfCategoriesEnum.push(new EnumModel(this.listOfCategories[i], i));
+      }
+    
     }, error => {
       console.log("********* create new meal: " + error);
     })
+    
 
     this.mealService.retrieveIngredients().subscribe(response => {
       this.listOfIngredientsObject = response;
     }, error => {
       console.log("********* create new meal: " + error);
     })
+  }
+
+  updateCategories() {
+    let getListOfCategories : Category[] = new Array();
+    this.selectedCategories.forEach(element => {
+      getListOfCategories.push(element.category)
+    })
+    this.mealService.retrieveMealByCategories(getListOfCategories).subscribe(
+      response => {
+        this.allMeals = response;
+      }, error => {
+        console.log(error);
+      }
+    )
 
   }
 

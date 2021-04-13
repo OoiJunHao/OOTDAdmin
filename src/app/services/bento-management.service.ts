@@ -10,6 +10,7 @@ import { Category } from '../models/category.enum';
 import { Ingredient } from '../models/ingredient';
 import { CreateMealReq } from '../models/CreateMealReq';
 import { UpdateMealReq } from '../models/UpdateMealReq';
+import { GetMealsByCategories } from '../models/GetMealsByCategories';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -60,6 +61,13 @@ export class BentoManagementService {
 
   retrieveMeal(mealId: number): Observable<Meal> {
     return this.httpClient.get<Meal>(this.baseUrl + "/retrieveMeal/" + mealId + "/?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  retrieveMealByCategories(categories: Category[]): Observable<Meal[]> {
+    let getMeal : GetMealsByCategories = new GetMealsByCategories(this.sessionService.getUsername(), this.sessionService.getPassword(), categories);
+    return this.httpClient.post<Meal[]>(this.baseUrl + "/retrieveByCategories", getMeal, httpOptions).pipe(
       catchError(this.handleError)
     )
   }
