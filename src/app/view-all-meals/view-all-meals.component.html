@@ -4,9 +4,13 @@
     <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <p-toast></p-toast>
     <div class="container">
+        <h4 class="header">Sort By:</h4>
+        <p-multiSelect style="color: white;" class="sortcategory" [options]="listOfCategoriesEnum" [(ngModel)]="selectedCategories" (onChange)= "updateCategories()" defaultLabel="Select Categories" optionLabel="category" ></p-multiSelect>
         <div class="headerContent">
-            <h3 class="header">All Meals</h3>
-            <app-create-new-meal class="header"></app-create-new-meal>
+            <div class="headertext">
+                <h3 class="header">All Meals</h3>
+                <app-create-new-meal class="header"></app-create-new-meal>
+            </div>
         </div>
         <div class="mealsTable">
             <p-table [value]="allMeals">

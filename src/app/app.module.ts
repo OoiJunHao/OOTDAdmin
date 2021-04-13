@@ -30,6 +30,7 @@ import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -113,7 +114,8 @@ import { ReportGenerationComponent } from './report-generation/report-generation
     InputSwitchModule,
     CalendarModule,
     InputTextModule,
-    SelectButtonModule
+    SelectButtonModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
