@@ -22,14 +22,14 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DividerModule } from 'primeng/divider';
-import {InputSwitchModule} from 'primeng/inputswitch';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {FileUpload, FileUploadModule} from 'primeng/fileupload';
-import {CalendarModule} from 'primeng/calendar';
-import {InputTextModule} from 'primeng/inputtext';
-
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FileUpload, FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 //Componenets
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +51,7 @@ import { ViewAllSalesTransactionComponent } from './view-all-sales-transaction/v
 import { ViewAllPromoCodeComponent } from './view-all-promo-code/view-all-promo-code.component';
 import { ViewAllDriversComponent } from './view-all-drivers/view-all-drivers.component';
 import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingredient.component';
+import { ReportGenerationComponent } from './report-generation/report-generation.component';
 
 
 
@@ -72,6 +73,7 @@ import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingre
     ViewAllPromoCodeComponent,
     ViewAllDriversComponent,
     ViewAllIngredientComponent,
+    ReportGenerationComponent,
 
   ],
   imports: [
@@ -110,8 +112,8 @@ import { ViewAllIngredientComponent } from './view-all-ingredient/view-all-ingre
     FileUploadModule,
     InputSwitchModule,
     CalendarModule,
-    InputTextModule
-
+    InputTextModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -67,7 +67,7 @@ export class CreateNewMealComponent implements OnInit {
   }
 
   create(createMealForm: NgForm) {
-    this.mealToCreate.averageRating = 5;
+    this.mealToCreate.averageRating = 0;
     this.submitted = true;
     if (this.selectedCategories.length == 0 || this.selectedIngredients.length == 0) {
       if (this.selectedCategories.length == 0) {
