@@ -10,25 +10,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./otuser.component.css']
 })
 export class OTUserComponent implements OnInit {
-  
+
   allUsers: OTUser[];
   selectedUsers: OTUser[];
 
   constructor(private OTUserService: OtUserService, public sessionService: SessionService, private router: Router) {
+    this.checkAccessRight();
     this.allUsers = new Array();
     this.selectedUsers = new Array();
   }
 
   ngOnInit(): void {
-    this.OTUserService.getAllUsers().subscribe(response => {this.allUsers = response;}, error => {console.log('************* otuser.ts' + error)});
+    this.OTUserService.getAllUsers().subscribe(response => { this.allUsers = response; }, error => { console.log('************* otuser.ts' + error) });
   }
 
-  checkAccessRight()
-	{
-		if(!this.sessionService.checkAccessRight(this.router.url))
-		{
-			this.router.navigate(["/accessRightError"]);
-		}
-	}
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
+  }
 
 }

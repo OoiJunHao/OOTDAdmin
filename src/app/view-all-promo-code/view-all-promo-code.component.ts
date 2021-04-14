@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { PromoCode } from '../models/promo-code';
 import { Promo } from '../models/promo.enum';
 import { PromoCodeServiceService } from '../services/promo-code-service.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-view-all-promo-code',
@@ -24,7 +26,7 @@ export class ViewAllPromoCodeComponent implements OnInit {
   endError: Boolean;
   resultError: Boolean;
 
-  constructor(private promoCodeService: PromoCodeServiceService, private messageService: MessageService) {
+  constructor(public sessionService: SessionService, private router: Router, private promoCodeService: PromoCodeServiceService, private messageService: MessageService) {
     this.promoCodes = new Array();
     this.promoCodeToCreate = new PromoCode();
     this.createDisplay = false;
@@ -38,6 +40,7 @@ export class ViewAllPromoCodeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.promoCodeService.getPromoCodes().subscribe(response => {
       this.promoCodes = response;
     }, error => {
@@ -45,6 +48,12 @@ export class ViewAllPromoCodeComponent implements OnInit {
     })
 
     this.discountTypeEnum = [Promo.FLAT, Promo.PERCENTAGE]
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
   updateCode(code: PromoCode) {

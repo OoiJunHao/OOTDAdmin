@@ -61,8 +61,8 @@ export class ViewAllMealsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    //this.checkAccessRight();
+
+    this.checkAccessRight();
 
     this.mealService.getProducts().subscribe(response => {
       this.allMeals = response;
@@ -94,11 +94,11 @@ export class ViewAllMealsComponent implements OnInit {
       for (i = 0; i < this.listOfCategories.length; i++) {
         this.listOfCategoriesEnum.push(new EnumModel(this.listOfCategories[i], i));
       }
-    
+
     }, error => {
       console.log("********* create new meal: " + error);
     })
-    
+
 
     this.mealService.retrieveIngredients().subscribe(response => {
       this.listOfIngredientsObject = response;
@@ -108,7 +108,7 @@ export class ViewAllMealsComponent implements OnInit {
   }
 
   updateCategories() {
-    let getListOfCategories : Category[] = new Array();
+    let getListOfCategories: Category[] = new Array();
     this.selectedCategories.forEach(element => {
       getListOfCategories.push(element.category)
     })
@@ -234,7 +234,7 @@ export class ViewAllMealsComponent implements OnInit {
           response => {
             console.log("success");
             window.location.reload();
-            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId })          
+            this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Meal Deleted: ID ' + this.mealToUpdate.mealId })
           }, error => {
             this.messageService.add({ severity: 'error', summary: 'Service Message', detail: error })
           }
@@ -250,9 +250,9 @@ export class ViewAllMealsComponent implements OnInit {
     this.mealToUpdate = new Meal();
   }
 
-  onUpload() { 
+  onUpload() {
     window.location.reload();
-    this.messageService.add({severity: 'success', summary: 'Image Uploaded', detail: ''});   
+    this.messageService.add({ severity: 'success', summary: 'Image Uploaded', detail: '' });
   }
 
   closeDialog() {

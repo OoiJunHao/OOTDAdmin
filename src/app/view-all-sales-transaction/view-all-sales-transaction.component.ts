@@ -22,11 +22,12 @@ export class ViewAllSalesTransactionComponent implements OnInit {
 
   constructor(private saleTransactionService: SaleTransactionManagementService, private sessionService: SessionService, private router: Router, private filterService: FilterService) {
     this.sales = new Array();
-    this.matchModeOptions = [ { label: 'Contains', value: FilterMatchMode.CONTAINS }];
+    this.matchModeOptions = [{ label: 'Contains', value: FilterMatchMode.CONTAINS }];
     // this.salesToView = this.sales[0];
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.saleTransactionService.getAllSaleTransactions().subscribe(
       response => {
         this.sales = response;
@@ -36,6 +37,12 @@ export class ViewAllSalesTransactionComponent implements OnInit {
         console.log('********** ViewAllSalesTransaction.ts: ' + error);
       }
     );
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
   checkDeliveryStatus(status: Delivery): number {

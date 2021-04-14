@@ -24,6 +24,7 @@ export class ViewAllDriversComponent implements OnInit {
   submitted: boolean;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public sessionService: SessionService, private driverManagementService: DriverManagementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    this.checkAccessRight();
     this.drivers = new Array();
     this.submitted = false;
 
@@ -41,6 +42,12 @@ export class ViewAllDriversComponent implements OnInit {
       }
 
     ];
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
 
