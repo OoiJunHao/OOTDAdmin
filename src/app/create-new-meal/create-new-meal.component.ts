@@ -7,6 +7,7 @@ import { Meal } from '../models/meal';
 import { BentoManagementService } from '../services/bento-management.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateMealReq } from '../models/CreateMealReq';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-create-new-meal',
@@ -34,7 +35,8 @@ export class CreateNewMealComponent implements OnInit {
 
   constructor(private mealService: BentoManagementService,
     private messageService: MessageService, private router: Router,
-    private activatedRoute: ActivatedRoute,) {
+    private activatedRoute: ActivatedRoute, private sessionService: SessionService) {
+    this.checkAccessRight();
     this.mealToCreate = new Meal();
     this.listOfCategories = new Array();
     this.selectedCategories = new Array();
@@ -46,6 +48,12 @@ export class CreateNewMealComponent implements OnInit {
     this.submitted = false;
     this.mealToCreate.image = this.makeid(7);
     this.imagePlaceholder = this.mealToCreate.image;
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
   ngOnInit(): void {

@@ -70,7 +70,7 @@ export class MainPageComponent implements OnInit {
     // populate dateDict
     var currentDate = new Date();
     console.log('Current date: ' + currentDate.toUTCString());
-    var thisMonth = currentDate.getMonth() == 0 ? 11 : currentDate.getMonth() -1;
+    var thisMonth = currentDate.getMonth() == 0 ? 11 : currentDate.getMonth() - 1;
     var thisYear = currentDate.getFullYear();
     for (let i = 0; i < 12; ++i) {
       this.dateDict[i] = (String(thisMonth).length == 2 ? String(thisMonth) : '0' + String(thisMonth)) + String(thisYear);
@@ -149,8 +149,8 @@ export class MainPageComponent implements OnInit {
 
         });
 
-        this.monthDiff = this.previousMonthRevenue == 0 ? 0 : ((this.currentMonthRevenue / this.previousMonthRevenue) -1) * 100;
-        this.yearDiff = this.previousYearRevenue == 0 ? 0 : ((this.currentYearRevenue / this.previousYearRevenue) -1) * 100;
+        this.monthDiff = this.previousMonthRevenue == 0 ? 0 : ((this.currentMonthRevenue / this.previousMonthRevenue) - 1) * 100;
+        this.yearDiff = this.previousYearRevenue == 0 ? 0 : ((this.currentYearRevenue / this.previousYearRevenue) - 1) * 100;
 
         // populate middle bar + line graph
         this.graphData = {
@@ -240,7 +240,7 @@ export class MainPageComponent implements OnInit {
 
   checkAccessRight() {
     if (!this.sessionService.checkAccessRight(this.router.url)) {
-      // this.router.navigate(["/accessRightError"]);
+      this.router.navigate(["/accessRightError"]);
     }
   }
 

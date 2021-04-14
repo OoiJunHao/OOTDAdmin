@@ -168,7 +168,7 @@ export class ViewAllStaffComponent implements OnInit {
 
   checkAccessRight() {
     if (!this.sessionService.checkAccessRight(this.router.url)) {
-      // this.router.navigate(["/accessRightError"]);
+      this.router.navigate(["/accessRightError"]);
     }
   }
 
