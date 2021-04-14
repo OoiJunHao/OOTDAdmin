@@ -56,12 +56,30 @@ export class SessionService {
       let staff: Staff = this.getCurrentStaff();
       if (staff.type == AccessRightEnum.ADMIN) {
         //all staff management pages
-        if (path == "/staffManagement/retrieveAllStaffs") {
+        if (path == "/staffManagement" ||
+          path == "/main-page" ||
+          path == "/bentoManagement" ||
+          path == "/createNewMeal" ||
+          path == "/user-management" ||
+          path == "/reviewManagement" ||
+          path == "/salesTransactionManagement" ||
+          path == "/promoManagement" ||
+          path == "/driverManagement" ||
+          path == "/ingredientMangement" ||
+          path == "/report-generation") {
           return true;
         }
       } else if (staff.type == AccessRightEnum.EMPLOYEE) {
         //everything else
-        if (path == " ") {
+        if (path == "/main-page" ||
+          path == "/bentoManagement" ||
+          path == "/createNewMeal" ||
+          path == "/user-management" ||
+          path == "/reviewManagement" ||
+          path == "/salesTransactionManagement" ||
+          path == "/promoManagement" ||
+          path == "/driverManagement" ||
+          path == "/ingredientMangement") {
           return true;
         } else {
           return false;
