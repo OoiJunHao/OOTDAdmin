@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,7 +27,8 @@ export class ViewAllPromoCodeComponent implements OnInit {
   endError: Boolean;
   resultError: Boolean;
 
-  constructor(public sessionService: SessionService, private router: Router, private promoCodeService: PromoCodeServiceService, private messageService: MessageService) {
+  constructor(public sessionService: SessionService, private router: Router, private promoCodeService: PromoCodeServiceService, private messageService: MessageService, public datePipe : DatePipe) {
+
     this.promoCodes = new Array();
     this.promoCodeToCreate = new PromoCode();
     this.createDisplay = false;
@@ -131,4 +133,12 @@ export class ViewAllPromoCodeComponent implements OnInit {
   clear() {
     this.promoCodeToCreate = new PromoCode();
   }
+
+  returnDate(date: Date) : any {
+    let newDate;
+    newDate = date.toString().substring(0, date.toString().length - 5);
+    console.log(newDate)
+    date = new Date(newDate);
+    return this.datePipe.transform(date, 'dd/MM/yyyy hh:mm:ss a')
+  } 
 }
