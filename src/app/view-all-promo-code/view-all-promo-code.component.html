@@ -22,8 +22,8 @@
             <ng-template pTemplate="body" let-code>
                 <tr>
                     <td>{{code.promoCodeId}}</td>
-                    <td>{{code.startDate}}</td>
-                    <td>{{code.endDate}}</td>
+                    <td>{{returnDate(code.startDate)}}</td>
+                    <td>{{returnDate(code.endDate)}}</td>
                     <td>{{code.discountCode}}</td>
                     <td>{{code.discountRate}}</td>
                     <td>{{code.discountCodeTypeEnum}}</td>

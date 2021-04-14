@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 // PrimeNg Modules
 import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
@@ -85,6 +85,7 @@ import { ReportGenerationComponent } from './report-generation/report-generation
     LayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
+    
     //PRIMENG MODULES
     MenubarModule,
     TableModule,
@@ -117,7 +118,7 @@ import { ReportGenerationComponent } from './report-generation/report-generation
     SelectButtonModule,
     MultiSelectModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
