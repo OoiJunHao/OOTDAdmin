@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Ingredient } from '../models/ingredient';
 import { IngredientType } from '../models/ingredient-type.enum';
@@ -26,12 +27,13 @@ export class ViewAllIngredientComponent implements OnInit {
   submitted: boolean = false;
   uploadImage: boolean = false;
 
-  constructor(private ingredientService: ViewAllIngredientsService, public sessionService: SessionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private ingredientService: ViewAllIngredientsService, public sessionService: SessionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.ingredients = new Array();
     this.ingredientType = new Array();
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.ingredientService.getIngredients().subscribe(
       response => {
         this.ingredients = response;
@@ -43,13 +45,19 @@ export class ViewAllIngredientComponent implements OnInit {
         console.log('******* View All Ingredient.ts' + error);
       }
     )
-    this.ingredientType = [ 
-      {name: 'Add On', code: 'ADDON'},
-      {name: 'Base', code: 'BASE'},
-      {name: 'Meat', code: 'MEAT'},
-      {name: 'Sauce', code: 'SAUCE'},
-      {name: 'Vege', code: 'VEGE'}
-  ];
+    this.ingredientType = [
+      { name: 'Add On', code: 'ADDON' },
+      { name: 'Base', code: 'BASE' },
+      { name: 'Meat', code: 'MEAT' },
+      { name: 'Sauce', code: 'SAUCE' },
+      { name: 'Vege', code: 'VEGE' }
+    ];
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
   showCreateDialog() {
@@ -136,12 +144,12 @@ export class ViewAllIngredientComponent implements OnInit {
 
   showImageDialog(ingred: Ingredient) {
     this.ingredientToView = ingred;
-    this.uploadImage  = true;
+    this.uploadImage = true;
   }
 
-  onUpload() { 
+  onUpload() {
     window.location.reload();
-    this.messageService.add({severity: 'success', summary: 'Image Uploaded', detail: ''});   
+    this.messageService.add({ severity: 'success', summary: 'Image Uploaded', detail: '' });
   }
 
 }

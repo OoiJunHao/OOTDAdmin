@@ -15,10 +15,17 @@ export class ReportGenerationComponent implements OnInit {
   start: Date | undefined;
   end: Date | undefined;
 
-  constructor(private saleTransactionService: SaleTransactionManagementService, private sessionService: SessionService, private router: Router, private messageService: MessageService) {    
-   }
+  constructor(private saleTransactionService: SaleTransactionManagementService, private sessionService: SessionService, private router: Router, private messageService: MessageService) {
+  }
 
   ngOnInit(): void {
+    this.checkAccessRight();
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
   generateReport() {

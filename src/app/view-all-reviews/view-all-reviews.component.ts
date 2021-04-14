@@ -18,6 +18,7 @@ export class ViewAllReviewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
 
     this.reviewManagementService.getReviews().subscribe(
       res => {
@@ -27,6 +28,12 @@ export class ViewAllReviewsComponent implements OnInit {
         console.log('********** VIEWREVIEWCOMPONENT.ts: ' + err);
       }
     );
+  }
+
+  checkAccessRight() {
+    if (!this.sessionService.checkAccessRight(this.router.url)) {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
 }
