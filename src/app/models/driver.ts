@@ -7,9 +7,8 @@ export class Driver {
     age: number;
     username: string;
     password: string;
-    profilePicture: string;
     salt: string;
-    monthlyEarnings: number;
+    wallet: number;
     active: boolean;
 
     saleTransaction: SaleTransaction[];
@@ -22,9 +21,8 @@ export class Driver {
         age: number,
         username: string,
         password: string,
-        profilePicture: string,
         salt: string,
-        monthlyEarnings: number,
+        wallet: number,
         active: boolean,
         saleTransaction: SaleTransaction[]
     ) {
@@ -34,9 +32,8 @@ export class Driver {
         this.age = age
         this.username = username
         this.password = password
-        this.profilePicture = profilePicture
         this.salt = salt
-        this.monthlyEarnings = monthlyEarnings
+        this.wallet = wallet
         this.active = active
         this.saleTransaction = saleTransaction
     }
