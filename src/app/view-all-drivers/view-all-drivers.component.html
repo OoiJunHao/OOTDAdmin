@@ -21,7 +21,7 @@
             <ng-template pTemplate="body" let-driver>
                 <tr>
                     <td>{{driver.driverId}}</td>
-                    <td>{{driver.profilePicture}}</td>
+                    <td><img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/drivers/' + driver.driverId + '.jpg'}}" style="max-width: 70%; max-height: 70%;" alt="No Image"/></td>
                     <td>{{driver.firstname}}</td>
                     <td>{{driver.lastName}}</td>
                     <td>{{driver.age}}</td>
@@ -57,8 +57,8 @@
                 <div class="dialogcolumn">{{driverToView.username}}</div>
             </div>
             <div class="dialogrow">
-                <div class="dialogcolumn columndescription">Monthly Earning: </div>
-                <div class="dialogcolumn">{{driverToView.monthlyEarnings | currency}}</div>
+                <div class="dialogcolumn columndescription">Wallet: </div>
+                <div class="dialogcolumn">{{driverToView.wallet | currency}}</div>
             </div>
             <div class="dialogrow">
                 <div class="dialogcolumn columndescription">Number of deliveries made: </div>
