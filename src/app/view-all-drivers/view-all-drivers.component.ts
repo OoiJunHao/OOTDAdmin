@@ -103,7 +103,7 @@ export class ViewAllDriversComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         if (this.driverToView != null) {
-          this.driverManagementService.deleteDriver(this.driverToView.driverId).subscribe(
+          this.driverManagementService.deleteDriver(this.driverToView).subscribe(
             response => {
               this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Driver Deleted', life: 3000 });
               this.drivers = this.drivers.filter(val => val.driverId !== this.driverToView.driverId);

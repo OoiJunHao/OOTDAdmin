@@ -34,7 +34,7 @@ export class DriverManagementService {
   }
 
   deleteDriver(driver: Driver): Observable<any> {
-    return this.httpClient.delete<any>(this.baseUrl + "/" + driver.driverId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
+    return this.httpClient.delete<any>(this.baseUrl + "/" + driver.driverId + "/?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe(
       catchError(this.handleError)
     )
   }
