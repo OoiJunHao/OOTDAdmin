@@ -4,10 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 OOTD Admin focuses on all management duties to complement and manage the customer app, OOTD FOOD.
 
-The backend system supporting the RESTful web services can be found [here](https://github.com/BikJeun/OOTDFood).
+The backend system supporting the RESTful web services can be found [here](https://github.com/OoiJunHao/OOTDFood).
 
 ## To Run OOTDAdmin
-1. Ensure that [OOTDFood](https://github.com/BikJeun/OOTDFood) have been deployed first. 
+1. Ensure that [OOTDFood](https://github.com/OoiJunHao/OOTDFood) has been deployed first. 
 1. Run `npm install` to generate all the node module.
 1. Run `ng serve` or `ng serve --open` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
